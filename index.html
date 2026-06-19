@@ -1,0 +1,909 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Charlotte Kerrigan — Software Developer</title>
+<meta name="description" content="Computer Science graduate (Brock University) — full-stack, backend, automation, and AI-assisted software development. Python, Java, TypeScript, C#, .NET." />
+<style>
+  :root{
+    --bg:#0d1117;
+    --bg-soft:#141b24;
+    --card:#161d27;
+    --card-hover:#1c2533;
+    --border:#26303d;
+    --border-bright:#33414f;
+    --text:#e8edf3;
+    --muted:#9aa7b5;
+    --faint:#6b7785;
+    --accent:#d98841;      /* warm rust/copper */
+    --accent-soft:#e0a06a;
+    --accent-2:#5fb3c4;    /* teal */
+    --maxw:1080px;
+    --radius:14px;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{
+    background:
+      radial-gradient(1200px 600px at 80% -10%, rgba(217,136,65,0.10), transparent 60%),
+      radial-gradient(900px 500px at -10% 10%, rgba(95,179,196,0.07), transparent 55%),
+      var(--bg);
+    color:var(--text);
+    font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+    line-height:1.6;
+    -webkit-font-smoothing:antialiased;
+  }
+  a{color:inherit;text-decoration:none}
+  .wrap{max-width:var(--maxw);margin:0 auto;padding:0 24px}
+
+  /* ---------- nav ---------- */
+  header.nav{
+    position:sticky;top:0;z-index:50;
+    backdrop-filter:saturate(140%) blur(10px);
+    background:rgba(13,17,23,0.78);
+    border-bottom:1px solid var(--border);
+  }
+  .nav-inner{display:flex;align-items:center;justify-content:space-between;height:60px}
+  .brand{font-weight:700;letter-spacing:.3px}
+  .brand span{color:var(--accent)}
+  .nav-links{display:flex;gap:26px;font-size:14px}
+  .nav-links a{color:var(--muted);transition:color .2s}
+  .nav-links a:hover{color:var(--text)}
+  @media(max-width:680px){.nav-links{display:none}}
+
+  /* ---------- hero ---------- */
+  .hero{padding:84px 0 56px}
+  .eyebrow{color:var(--accent);font-size:14px;font-weight:600;letter-spacing:2px;text-transform:uppercase}
+  .hero h1{font-size:clamp(38px,7vw,68px);line-height:1.05;margin:14px 0 8px;letter-spacing:-1px}
+  .hero h2{font-size:clamp(18px,3vw,26px);font-weight:500;color:var(--muted);margin-bottom:26px}
+  .hero p.lede{font-size:17px;color:var(--muted);max-width:680px;margin-bottom:30px}
+  .cta-row{display:flex;flex-wrap:wrap;gap:12px;align-items:center}
+  .btn{
+    display:inline-flex;align-items:center;gap:8px;
+    padding:11px 20px;border-radius:10px;font-size:14px;font-weight:600;
+    border:1px solid var(--border-bright);transition:all .2s;
+  }
+  .btn.primary{background:var(--accent);color:#1a120b;border-color:var(--accent)}
+  .btn.primary:hover{background:var(--accent-soft)}
+  .btn.ghost{color:var(--text)}
+  .btn.ghost:hover{border-color:var(--accent);color:var(--accent)}
+
+  /* ---------- sections ---------- */
+  section{padding:54px 0;border-top:1px solid var(--border)}
+  .sec-head{display:flex;align-items:baseline;gap:14px;margin-bottom:8px}
+  .sec-head h3{font-size:13px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--accent)}
+  .sec-head .line{flex:1;height:1px;background:var(--border)}
+  .sec-title{font-size:clamp(26px,4vw,36px);letter-spacing:-.5px;margin-bottom:8px}
+  .sec-sub{color:var(--muted);margin-bottom:34px;max-width:680px}
+
+  /* ---------- about/skills ---------- */
+  .skills-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:18px}
+  .skill-card{
+    background:var(--card);border:1px solid var(--border);border-radius:var(--radius);
+    padding:22px;
+  }
+  .skill-card h4{font-size:15px;margin-bottom:14px;display:flex;align-items:center;gap:8px}
+  .skill-card h4 .dot{width:8px;height:8px;border-radius:50%;background:var(--accent)}
+  .chips{display:flex;flex-wrap:wrap;gap:7px}
+  .chip{
+    font-size:12.5px;color:var(--muted);background:var(--bg-soft);
+    border:1px solid var(--border);border-radius:7px;padding:4px 10px;
+  }
+
+  /* ---------- projects ---------- */
+  .filters{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:28px}
+  .filter{
+    font-size:13px;color:var(--muted);background:transparent;
+    border:1px solid var(--border);border-radius:20px;padding:6px 15px;cursor:pointer;
+    transition:all .18s;font-family:inherit;
+  }
+  .filter:hover{border-color:var(--border-bright);color:var(--text)}
+  .filter.active{background:var(--accent);color:#1a120b;border-color:var(--accent);font-weight:600}
+
+  .proj-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(320px,1fr));gap:18px}
+  .proj{
+    background:var(--card);border:1px solid var(--border);border-radius:var(--radius);
+    padding:16px 16px 22px;display:flex;flex-direction:column;
+    transition:border-color .2s,transform .2s,background .2s;
+  }
+  .proj:hover{border-color:var(--border-bright);background:var(--card-hover);transform:translateY(-3px)}
+  .proj.featured{border-color:var(--accent);box-shadow:0 0 0 1px rgba(217,136,65,.15)}
+
+  /* thumbnail / cover */
+  .thumb{
+    position:relative;aspect-ratio:16/10;width:100%;border-radius:10px;overflow:hidden;
+    margin-bottom:16px;background:var(--bg-soft);border:1px solid var(--border);
+  }
+  .thumb img{width:100%;height:100%;object-fit:cover;object-position:top center;display:block}
+  .thumb img.shot{cursor:zoom-in;transition:transform .35s}
+  .proj:hover .thumb img.shot{transform:scale(1.03)}
+  .live-badge{
+    position:absolute;bottom:8px;right:8px;z-index:2;
+    font-size:10.5px;font-weight:600;letter-spacing:.4px;
+    background:rgba(13,17,23,.78);color:var(--accent-soft);
+    border:1px solid rgba(217,136,65,.35);border-radius:20px;padding:3px 9px;
+    display:inline-flex;align-items:center;gap:5px;backdrop-filter:blur(4px);
+  }
+  .live-badge .pulse{width:6px;height:6px;border-radius:50%;background:#4ec77a;box-shadow:0 0 0 0 rgba(78,199,122,.6);animation:pulse 2s infinite}
+  @keyframes pulse{0%{box-shadow:0 0 0 0 rgba(78,199,122,.5)}70%{box-shadow:0 0 0 6px rgba(78,199,122,0)}100%{box-shadow:0 0 0 0 rgba(78,199,122,0)}}
+
+  .cover{width:100%;height:100%;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:12px;position:relative}
+  .cover::after{content:"";position:absolute;inset:0;background-image:radial-gradient(rgba(255,255,255,.045) 1px,transparent 1px);background-size:14px 14px;opacity:.6}
+  .cover svg{width:48px;height:48px;position:relative;z-index:1}
+  .cover .clabel{font-family:ui-monospace,"SF Mono",Menlo,Consolas,monospace;font-size:11px;letter-spacing:1.5px;color:var(--faint);position:relative;z-index:1}
+  .cv-ai{background:linear-gradient(135deg,#1c1633,var(--bg-soft))} .cv-ai svg{color:#c4a3f5}
+  .cv-auto{background:linear-gradient(135deg,#2a1c0e,var(--bg-soft))} .cv-auto svg{color:var(--accent-soft)}
+  .cv-algo{background:linear-gradient(135deg,#0e2329,var(--bg-soft))} .cv-algo svg{color:var(--accent-2)}
+  .cv-games{background:linear-gradient(135deg,#11261a,var(--bg-soft))} .cv-games svg{color:#5fc48a}
+  .cv-qa{background:linear-gradient(135deg,#0e1d2e,var(--bg-soft))} .cv-qa svg{color:#6aa6e0}
+  .cv-backend{background:linear-gradient(135deg,#202733,var(--bg-soft))} .cv-backend svg{color:#aab6c4}
+
+  .proj-top{display:flex;justify-content:space-between;align-items:flex-start;gap:12px;margin-bottom:6px}
+  .proj h4{font-size:18.5px;letter-spacing:-.3px;line-height:1.25}
+  .badge{
+    font-size:10.5px;font-weight:700;letter-spacing:.5px;text-transform:uppercase;
+    padding:3px 8px;border-radius:6px;white-space:nowrap;flex-shrink:0;
+  }
+  .badge.client{background:rgba(217,136,65,.16);color:var(--accent-soft);border:1px solid rgba(217,136,65,.3)}
+  .badge.group{background:rgba(95,179,196,.14);color:var(--accent-2);border:1px solid rgba(95,179,196,.3)}
+  .proj .meta{font-size:12.5px;color:var(--faint);margin-bottom:14px}
+  .proj p{font-size:14px;color:var(--muted);margin-bottom:14px}
+  .proj .note{font-size:12.5px;color:var(--faint);font-style:italic;border-left:2px solid var(--border-bright);padding-left:10px;margin-bottom:16px}
+  .stack{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:18px}
+  .stack span{font-size:11.5px;color:var(--accent-2);background:rgba(95,179,196,.08);border:1px solid rgba(95,179,196,.18);border-radius:6px;padding:2px 8px}
+  .proj-foot{margin-top:auto;display:flex;gap:14px;align-items:center;font-size:13px}
+  .proj-foot a{color:var(--accent);font-weight:600;display:inline-flex;align-items:center;gap:5px}
+  .proj-foot a:hover{color:var(--accent-soft)}
+  .proj-foot .priv{color:var(--faint);font-weight:600}
+
+  /* ---------- lightbox ---------- */
+  #lb{position:fixed;inset:0;z-index:100;background:rgba(8,11,15,.92);display:none;align-items:center;justify-content:center;padding:30px;cursor:zoom-out;backdrop-filter:blur(4px)}
+  #lb.open{display:flex}
+  #lb img{max-width:100%;max-height:100%;border-radius:10px;border:1px solid var(--border-bright);box-shadow:0 20px 60px rgba(0,0,0,.6)}
+  #lb .cap{position:absolute;bottom:20px;left:0;right:0;text-align:center;color:var(--muted);font-size:13px}
+
+  /* ---------- experience / timeline ---------- */
+  .tl{position:relative;padding-left:26px}
+  .tl::before{content:"";position:absolute;left:6px;top:6px;bottom:6px;width:2px;background:var(--border)}
+  .tl-item{position:relative;padding-bottom:30px}
+  .tl-item:last-child{padding-bottom:0}
+  .tl-item::before{content:"";position:absolute;left:-26px;top:6px;width:12px;height:12px;border-radius:50%;background:var(--accent);box-shadow:0 0 0 4px var(--bg)}
+  .tl-item h4{font-size:17px}
+  .tl-item .org{color:var(--accent-2);font-size:14px;margin:2px 0}
+  .tl-item .when{color:var(--faint);font-size:12.5px;margin-bottom:8px}
+  .tl-item ul{margin-left:18px;color:var(--muted);font-size:14px}
+  .tl-item li{margin-bottom:4px}
+
+  .two-col{display:grid;grid-template-columns:1.3fr 1fr;gap:40px}
+  @media(max-width:780px){.two-col{grid-template-columns:1fr;gap:30px}}
+  .mini{margin-bottom:22px}
+  .mini h4{font-size:16px}
+  .mini .org{color:var(--accent-2);font-size:13.5px}
+  .mini .when{color:var(--faint);font-size:12px;margin-bottom:6px}
+  .mini p{color:var(--muted);font-size:13.5px}
+
+  /* ---------- contact ---------- */
+  .contact-box{
+    background:linear-gradient(135deg,var(--bg-soft),var(--card));
+    border:1px solid var(--border);border-radius:18px;padding:44px;text-align:center;
+  }
+  .contact-box h3{font-size:clamp(24px,4vw,34px);margin-bottom:10px;letter-spacing:-.5px}
+  .contact-box p{color:var(--muted);margin-bottom:26px}
+  .contact-links{display:flex;flex-wrap:wrap;gap:14px;justify-content:center}
+
+  footer{padding:36px 0;border-top:1px solid var(--border);text-align:center;color:var(--faint);font-size:13px}
+
+  .hidden{display:none !important}
+  ::selection{background:rgba(217,136,65,.3)}
+</style>
+</head>
+<body>
+
+<header class="nav">
+  <div class="wrap nav-inner">
+    <div class="brand">Charlotte <span>Kerrigan</span></div>
+    <nav class="nav-links">
+      <a href="#about">About</a>
+      <a href="#skills">Skills</a>
+      <a href="#projects">Projects</a>
+      <a href="#experience">Experience</a>
+      <a href="#contact">Contact</a>
+    </nav>
+  </div>
+</header>
+
+<!-- HERO -->
+<div class="wrap">
+  <section class="hero" style="border-top:none">
+    <div class="eyebrow">Software Developer</div>
+    <h1>Charlotte Kerrigan</h1>
+    <h2>Full-stack &amp; backend developer · automation · AI-assisted engineering</h2>
+    <p class="lede">
+      Computer Science graduate from Brock University with hands-on experience in
+      Python, Java, TypeScript, and C# / .NET. I build full-stack products, backend
+      APIs, and automation tools from scratch — and lean on structured workflows,
+      testing, and code review to keep AI-assisted code reliable and maintainable.
+    </p>
+    <div class="cta-row">
+      <a class="btn primary" href="#projects">View projects</a>
+      <a class="btn ghost" href="mailto:ckerrigan789@gmail.com">Get in touch</a>
+      <a class="btn ghost" href="https://github.com/Maikeeeb" target="_blank" rel="noopener">GitHub ↗</a>
+    </div>
+  </section>
+</div>
+
+<!-- ABOUT -->
+<div class="wrap">
+  <section id="about">
+    <div class="sec-head"><h3>About</h3><div class="line"></div></div>
+    <h2 class="sec-title">Building software that holds up under real use</h2>
+    <p class="sec-sub" style="max-width:760px">
+      My strongest work starts with a real problem. As a wash-bay operator I watched
+      a fleet company run daily operations on paper, proposed a software replacement,
+      and led the architecture and build of a full-stack platform for it. Alongside
+      client and academic work, I build automation pipelines, game prototypes, and
+      AI-agent tooling — always with a strong foundation in OOP, recursion, systems
+      thinking, and testing. I'm comfortable working independently on long, complex
+      problems and collaborating in teams.
+    </p>
+    <div class="skills-grid" style="margin-top:8px">
+      <div class="skill-card">
+        <h4><span class="dot"></span>What I focus on</h4>
+        <div class="chips">
+          <span class="chip">Full-stack web apps</span>
+          <span class="chip">REST API design</span>
+          <span class="chip">Backend architecture</span>
+          <span class="chip">Automation pipelines</span>
+          <span class="chip">Software testing &amp; QA</span>
+          <span class="chip">AI-assisted workflows</span>
+        </div>
+      </div>
+      <div class="skill-card">
+        <h4><span class="dot"></span>How I work</h4>
+        <div class="chips">
+          <span class="chip">Spec / test-driven</span>
+          <span class="chip">Human-in-the-loop review</span>
+          <span class="chip">Layered architecture</span>
+          <span class="chip">Git / PR workflows</span>
+          <span class="chip">Pre-commit quality gates</span>
+          <span class="chip">Documentation</span>
+        </div>
+      </div>
+      <div class="skill-card">
+        <h4><span class="dot"></span>Education</h4>
+        <p style="font-size:14px;color:var(--muted)">
+          <strong style="color:var(--text)">B.Sc. Computer Science</strong><br/>
+          Brock University, St. Catharines, ON<br/>
+          <span style="color:var(--faint);font-size:13px">Sep 2021 – Expected Jun 2026</span>
+        </p>
+      </div>
+    </div>
+  </section>
+</div>
+
+<!-- SKILLS -->
+<div class="wrap">
+  <section id="skills">
+    <div class="sec-head"><h3>Skills</h3><div class="line"></div></div>
+    <h2 class="sec-title">Technical toolbox</h2>
+    <p class="sec-sub">Languages, frameworks, and concepts I've used across client, academic, and personal projects.</p>
+    <div class="skills-grid">
+      <div class="skill-card">
+        <h4><span class="dot"></span>Languages</h4>
+        <div class="chips">
+          <span class="chip">Python</span><span class="chip">Java</span>
+          <span class="chip">TypeScript / JavaScript</span><span class="chip">C#</span>
+          <span class="chip">C++</span><span class="chip">Lua</span><span class="chip">SQL</span>
+        </div>
+      </div>
+      <div class="skill-card">
+        <h4><span class="dot"></span>Frontend</h4>
+        <div class="chips">
+          <span class="chip">React + Vite</span><span class="chip">Svelte 5</span>
+          <span class="chip">Tailwind CSS</span><span class="chip">shadcn/ui</span>
+          <span class="chip">MUI</span><span class="chip">JSON-schema forms</span>
+          <span class="chip">.NET 8 WPF</span>
+        </div>
+      </div>
+      <div class="skill-card">
+        <h4><span class="dot"></span>Backend &amp; APIs</h4>
+        <div class="chips">
+          <span class="chip">ASP.NET Core (.NET 8)</span><span class="chip">FastAPI</span>
+          <span class="chip">Entity Framework Core</span><span class="chip">REST design</span>
+          <span class="chip">RBAC / auth</span><span class="chip">Rate limiting</span>
+          <span class="chip">OpenAPI / Swagger</span>
+        </div>
+      </div>
+      <div class="skill-card">
+        <h4><span class="dot"></span>Databases</h4>
+        <div class="chips">
+          <span class="chip">PostgreSQL</span><span class="chip">MongoDB</span>
+          <span class="chip">SQLite</span>
+        </div>
+      </div>
+      <div class="skill-card">
+        <h4><span class="dot"></span>Testing &amp; QA</h4>
+        <div class="chips">
+          <span class="chip">pytest</span><span class="chip">Vitest</span>
+          <span class="chip">Playwright</span><span class="chip">xUnit</span>
+          <span class="chip">Coverage &amp; CRAP gates</span><span class="chip">Pre-commit (black, flake8, mypy)</span>
+        </div>
+      </div>
+      <div class="skill-card">
+        <h4><span class="dot"></span>Tooling &amp; DevOps</h4>
+        <div class="chips">
+          <span class="chip">Git / GitHub</span><span class="chip">GitHub CLI / worktrees</span>
+          <span class="chip">GitHub Actions</span><span class="chip">Docker Compose</span>
+          <span class="chip">Linux</span><span class="chip">ffmpeg</span>
+        </div>
+      </div>
+      <div class="skill-card">
+        <h4><span class="dot"></span>Automation &amp; media</h4>
+        <div class="chips">
+          <span class="chip">Selenium</span><span class="chip">MoviePy</span>
+          <span class="chip">PyGame</span><span class="chip">gTTS</span>
+          <span class="chip">Tree-sitter</span>
+        </div>
+      </div>
+      <div class="skill-card">
+        <h4><span class="dot"></span>AI-assisted development</h4>
+        <div class="chips">
+          <span class="chip">Cursor (daily driver)</span><span class="chip">Claude Code</span>
+          <span class="chip">Multi-agent workflows</span><span class="chip">AGENTS.md repos</span>
+          <span class="chip">MCP-style tooling</span><span class="chip">Diff &amp; test review</span>
+        </div>
+      </div>
+      <div class="skill-card">
+        <h4><span class="dot"></span>CS fundamentals</h4>
+        <div class="chips">
+          <span class="chip">OOP &amp; ECS</span><span class="chip">Recursion &amp; algorithms</span>
+          <span class="chip">Data structures</span><span class="chip">Concurrency &amp; OS</span>
+          <span class="chip">Type systems</span><span class="chip">Layered architecture</span>
+        </div>
+      </div>
+    </div>
+  </section>
+</div>
+
+<!-- PROJECTS -->
+<div class="wrap">
+  <section id="projects">
+    <div class="sec-head"><h3>Projects</h3><div class="line"></div></div>
+    <h2 class="sec-title">Selected work</h2>
+    <p class="sec-sub">
+      A mix of a real client product, group academic work, and personal builds.
+      Cards marked <span style="color:var(--accent-soft)">● Live screenshot</span> show the
+      actual running app — click to enlarge. Use the filters to narrow by focus area.
+    </p>
+
+    <div class="filters" id="filters">
+      <button class="filter active" data-f="all">All</button>
+      <button class="filter" data-f="fullstack">Full-stack</button>
+      <button class="filter" data-f="backend">Backend / API</button>
+      <button class="filter" data-f="automation">Automation</button>
+      <button class="filter" data-f="ai">AI / Agents</button>
+      <button class="filter" data-f="algorithms">Algorithms</button>
+      <button class="filter" data-f="qa">QA / Testing</button>
+      <button class="filter" data-f="games">Game dev</button>
+    </div>
+
+    <div class="proj-grid" id="grid">
+
+      <!-- WashProof -->
+      <article class="proj featured" data-tags="fullstack backend qa">
+        <div class="thumb">
+          <span class="live-badge"><span class="pulse"></span>Live screenshot</span>
+          <img class="shot" src="images/washproof-demo.png" alt="WashProof product page with kiosk UI" loading="lazy" data-cap="WashProof — product overview with the bay-floor sign-off kiosk" />
+        </div>
+        <div class="proj-top">
+          <h4>WashProof — Bus Wash Operations Platform</h4>
+          <span class="badge client">Client</span>
+        </div>
+        <div class="meta">2026 (ongoing) · Primary contributor / architect</div>
+        <p>
+          A full-stack platform replacing a fleet company's paper-based bus-wash logging.
+          I spotted the gap while working the wash bay, proposed the product, and led the
+          architecture: touch-optimized kiosk UI, RBAC, audit logging, optimistic concurrency,
+          idempotent writes, and an invoice-ready record lifecycle. Backed by a formal 58-requirement SRS.
+        </p>
+        <p class="note">Duo project for KTS Truck &amp; Coach. Collaborator contributed kiosk/washlist UI and customer-portal flows.</p>
+        <div class="stack">
+          <span>React</span><span>TypeScript</span><span>Tailwind</span><span>shadcn/ui</span>
+          <span>ASP.NET Core (.NET 8)</span><span>EF Core</span><span>PostgreSQL</span><span>Playwright</span>
+        </div>
+        <div class="proj-foot"><span class="priv">🔒 Private client project</span></div>
+      </article>
+
+      <!-- Token Trail -->
+      <article class="proj" data-tags="fullstack backend qa algorithms">
+        <div class="thumb">
+          <span class="live-badge"><span class="pulse"></span>Live screenshot</span>
+          <img class="shot" src="images/token-trail.png" alt="Token Trail landing page" loading="lazy" data-cap="Token Trail — instructor/student landing page (running locally)" />
+        </div>
+        <div class="proj-top">
+          <h4>Token Trail — Code Similarity Detection</h4>
+          <span class="badge group">Group</span>
+        </div>
+        <div class="meta">2026 · Brock University group project · 26 commits</div>
+        <p>
+          Academic-integrity tool for programming assignments. I built the instructor-facing
+          similarity-result APIs around the team's analysis engine — ranked pair lists, side-by-side
+          comparison payloads, ownership checks, and pseudonymized identifiers — plus privacy/retention
+          controls, admin operations, and external-evaluation tooling with full API contract tests.
+        </p>
+        <p class="note">The core AST/tokenization engine was built by teammates; my work connected it to APIs, tests, and admin/privacy controls.</p>
+        <div class="stack">
+          <span>Python</span><span>FastAPI</span><span>React + Vite</span><span>MongoDB</span><span>Docker Compose</span><span>Tree-sitter</span>
+        </div>
+        <div class="proj-foot"><a href="https://github.com/Ikechukwu-Okogwu/token-trail" target="_blank" rel="noopener">GitHub ↗</a></div>
+      </article>
+
+      <!-- TwitchClipper -->
+      <article class="proj" data-tags="backend automation algorithms qa">
+        <div class="thumb"><div class="cover cv-auto">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="12" cy="12" r="3.2"/><path d="M12 2v3M12 19v3M2 12h3M19 12h3M4.9 4.9l2.1 2.1M17 17l2.1 2.1M19.1 4.9 17 7M7 17l-2.1 2.1"/></svg>
+          <span class="clabel">PYTHON · FASTAPI · FFMPEG</span>
+        </div></div>
+        <div class="proj-top"><h4>TwitchClipper — VOD Highlight Generator</h4></div>
+        <div class="meta">March 2026</div>
+        <p>
+          Generates highlight montages from long Twitch VODs by using <em>chat activity</em>
+          as an engagement signal — detects message-per-window spikes, ranks candidate segments,
+          and cuts/compiles clips with ffmpeg. Built on a FastAPI backend with an in-memory job
+          queue and worker system, plus an early .NET 8 WPF desktop frontend.
+        </p>
+        <p class="note">Local / API / CLI media-processing project, not a deployed service.</p>
+        <div class="stack">
+          <span>Python</span><span>FastAPI</span><span>ffmpeg</span><span>Selenium</span><span>MoviePy</span><span>SQLite</span><span>.NET 8 WPF</span>
+        </div>
+        <div class="proj-foot"><a href="https://github.com/Maikeeeb/TwitchClipper" target="_blank" rel="noopener">GitHub ↗</a></div>
+      </article>
+
+      <!-- tftcalcs -->
+      <article class="proj" data-tags="fullstack backend algorithms qa">
+        <div class="thumb">
+          <span class="live-badge"><span class="pulse"></span>Live screenshot</span>
+          <img class="shot" src="images/tftcalcs.png" alt="TFT Calculator optimizer UI" loading="lazy" data-cap="TFT Comp Optimizer — solver modes and configuration (frontend + FastAPI running locally)" />
+        </div>
+        <div class="proj-top"><h4>TFT Team Comp Optimizer</h4></div>
+        <div class="meta">January 2026</div>
+        <p>
+          Full-stack optimizer for Teamfight Tactics compositions, pairing a Python beam-search
+          solver with a FastAPI backend and a React + TypeScript frontend. The solver respects
+          team-size limits, trait blacklists, and emblem caps, and folds in live MetaTFT stats as
+          tie-breakers. Maintained 92%+ Python coverage with pre-commit hooks.
+        </p>
+        <div class="stack">
+          <span>Python</span><span>FastAPI</span><span>React</span><span>TypeScript</span><span>Vite</span><span>MUI</span><span>pytest</span>
+        </div>
+        <div class="proj-foot"><a href="https://github.com/Maikeeeb/tftcalcs" target="_blank" rel="noopener">GitHub ↗</a></div>
+      </article>
+
+      <!-- Deep Research Agent -->
+      <article class="proj" data-tags="ai backend automation">
+        <div class="thumb"><div class="cover cv-ai">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="5" cy="6" r="2"/><circle cx="5" cy="18" r="2"/><circle cx="19" cy="12" r="2"/><circle cx="12" cy="12" r="1.7"/><path d="M6.9 6.9 10.6 11M6.9 17.1 10.6 13M13.7 12H17"/></svg>
+          <span class="clabel">AGENTS · PYTHON · JSON</span>
+        </div></div>
+        <div class="proj-top"><h4>Deep Research Agent System</h4></div>
+        <div class="meta">2026 · Custom agent skills + Python tooling</div>
+        <p>
+          A multi-agent research workflow that turns a complex question into a traceable run:
+          planned sub-questions, persona-based investigation, claim ledgers, source mapping,
+          duplicate gates, and final trace checks that compile into a Markdown report. Backed by
+          standard-library Python scripts for deterministic orchestration and validation.
+        </p>
+        <p class="note">Local agent-skill system. Demonstrates JSON-schema discipline, CLI design, and traceability tooling.</p>
+        <div class="stack">
+          <span>Python</span><span>argparse</span><span>JSON artifacts</span><span>Agent orchestration</span><span>subprocess</span>
+        </div>
+        <div class="proj-foot"><span class="priv">Local project</span></div>
+      </article>
+
+      <!-- GitHub Issue Orchestration -->
+      <article class="proj" data-tags="ai automation qa">
+        <div class="thumb"><div class="cover cv-ai">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="5" cy="6" r="2"/><circle cx="5" cy="18" r="2"/><circle cx="19" cy="12" r="2"/><circle cx="12" cy="12" r="1.7"/><path d="M6.9 6.9 10.6 11M6.9 17.1 10.6 13M13.7 12H17"/></svg>
+          <span class="clabel">AGENTS · GITHUB CLI · TDD</span>
+        </div></div>
+        <div class="proj-top"><h4>GitHub Issue Orchestration Agents</h4></div>
+        <div class="meta">2026 · Custom skills + GitHub CLI workflows</div>
+        <p>
+          Turns GitHub issues into controlled, test-first, multi-agent implementation pipelines.
+          A backlog orchestrator classifies and wave-plans issues; per-issue handlers run a
+          test → implement → review → fix subagent pipeline in isolated git worktrees, with retry
+          limits, structured JSON handoffs, and quality gates (coverage, CRAP, lint, typecheck).
+        </p>
+        <p class="note">Local agent-skill system. Concurrency-safe one-branch-per-worktree design.</p>
+        <div class="stack">
+          <span>Agent orchestration</span><span>GitHub CLI</span><span>Git worktrees</span><span>Playwright</span><span>TDD gates</span>
+        </div>
+        <div class="proj-foot"><span class="priv">Local project</span></div>
+      </article>
+
+      <!-- Rust Belt Relicworks -->
+      <article class="proj" data-tags="games qa">
+        <div class="thumb">
+          <span class="live-badge"><span class="pulse"></span>Live screenshot</span>
+          <img class="shot" src="images/rust-belt-relicworks.png" alt="Rust Belt Relicworks game UI" loading="lazy" data-cap="Rust Belt Relicworks — the live idle-game loop (stations, resources, workshop log)" />
+        </div>
+        <div class="proj-top"><h4>Rust Belt Relicworks — Idle Game Prototype</h4></div>
+        <div class="meta">2026</div>
+        <p>
+          A browser idle/incremental game prototype about restoring a Rust Belt workshop. Typed
+          state reducers drive the resource loop; versioned localStorage saves with capped offline
+          resume; consent-gated local telemetry export. Validated with Vitest unit tests and
+          Playwright readiness checks.
+        </p>
+        <p class="note">Private validation prototype, not a shipped game.</p>
+        <div class="stack">
+          <span>Svelte 5</span><span>TypeScript</span><span>Vite</span><span>Vitest</span><span>Playwright</span>
+        </div>
+        <div class="proj-foot"><a href="https://github.com/Maikeeeb/rust-belt-relicworks" target="_blank" rel="noopener">GitHub ↗</a></div>
+      </article>
+
+      <!-- Twitch Compilation -->
+      <article class="proj" data-tags="automation">
+        <div class="thumb"><div class="cover cv-auto">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="12" cy="12" r="3.2"/><path d="M12 2v3M12 19v3M2 12h3M19 12h3M4.9 4.9l2.1 2.1M17 17l2.1 2.1M19.1 4.9 17 7M7 17l-2.1 2.1"/></svg>
+          <span class="clabel">PYTHON · SELENIUM · MOVIEPY</span>
+        </div></div>
+        <div class="proj-top"><h4>Automatic Twitch Compilation</h4></div>
+        <div class="meta">2020 · 100+ hours</div>
+        <p>
+          End-to-end pipeline that scrapes high-viewed Twitch clips from the last 24 hours with
+          Selenium, downloads them with threading, and auto-edits them into a single vertical
+          compilation video with MoviePy — overlays, transitions, timestamp/link output, and a
+          target duration cap. Full OOP architecture.
+        </p>
+        <p class="note">Prototype / local automation pipeline.</p>
+        <div class="stack">
+          <span>Python</span><span>Selenium</span><span>MoviePy</span><span>Threading</span><span>Linux</span>
+        </div>
+        <div class="proj-foot"><a href="https://github.com/maikeeb/YoutubeCompilation" target="_blank" rel="noopener">GitHub ↗</a></div>
+      </article>
+
+      <!-- BarGraphVideo -->
+      <article class="proj" data-tags="automation">
+        <div class="thumb"><div class="cover cv-auto">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="12" cy="12" r="3.2"/><path d="M12 2v3M12 19v3M2 12h3M19 12h3M4.9 4.9l2.1 2.1M17 17l2.1 2.1M19.1 4.9 17 7M7 17l-2.1 2.1"/></svg>
+          <span class="clabel">PYTHON · SELENIUM · gTTS</span>
+        </div></div>
+        <div class="proj-top"><h4>Reddit Short-Form Video Automation</h4></div>
+        <div class="meta">2022</div>
+        <p>
+          Pipeline that scrapes Reddit posts/comments with Selenium, screenshots the content,
+          generates gTTS narration, and composites vertical short-form videos over cycling B-roll
+          with MoviePy (1080×1920, 60 FPS, NVENC export). Includes a YouTube Data API upload script.
+        </p>
+        <p class="note">Prototype / local automation; upload tooling is prototype-level.</p>
+        <div class="stack">
+          <span>Python</span><span>Selenium</span><span>MoviePy</span><span>gTTS</span><span>YouTube Data API</span>
+        </div>
+        <div class="proj-foot"><span class="priv">Local project</span></div>
+      </article>
+
+      <!-- MoviePy Editor -->
+      <article class="proj" data-tags="automation games">
+        <div class="thumb">
+          <span class="live-badge"><span class="pulse"></span>Live screenshot</span>
+          <img class="shot" src="images/moviepy-editor.png" alt="MoviePy Video Editor desktop window" loading="lazy" data-cap="MoviePy Video Editor — the pygame desktop UI (Import / Export / timeline)" />
+        </div>
+        <div class="proj-top"><h4>MoviePy Video Editor</h4></div>
+        <div class="meta">2020 · 26 commits</div>
+        <p>
+          A standalone desktop-style video editor in Python with a PyGame / pygame_gui interface —
+          import/export controls, a clip timeline with drag/reorder, fades, text overlays, and
+          threaded h264 export so long renders don't block the UI. Became the foundation for the
+          later Twitch compilation pipeline.
+        </p>
+        <div class="stack">
+          <span>Python</span><span>MoviePy</span><span>PyGame</span><span>pygame_gui</span><span>Tkinter</span>
+        </div>
+        <div class="proj-foot"><a href="https://github.com/Maikeeeb/Moviepy-Video-Editor" target="_blank" rel="noopener">GitHub ↗</a></div>
+      </article>
+
+      <!-- A* -->
+      <article class="proj" data-tags="algorithms">
+        <div class="thumb"><div class="cover cv-algo">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="5" cy="6" r="2"/><circle cx="12" cy="18" r="2"/><circle cx="19" cy="8" r="2"/><path d="M6.5 7.3 10.8 16.4M13.6 16.7 17.6 9.4M6.9 6 17.1 7.6"/></svg>
+          <span class="clabel">JAVA · GRAPH SEARCH</span>
+        </div></div>
+        <div class="proj-top"><h4>A* Pathfinding Benchmark</h4></div>
+        <div class="meta">2023 · Java</div>
+        <p>
+          A* pathfinding over randomly generated grid boards with configurable wall frequency and
+          heuristic weighting — frontier management with a PriorityQueue, path reconstruction, and
+          large-run benchmark loops comparing timing and success rate across randomized boards.
+        </p>
+        <div class="stack">
+          <span>Java</span><span>PriorityQueue</span><span>Graph search</span><span>Heuristics</span>
+        </div>
+        <div class="proj-foot"><a href="https://github.com/maikeeb/A_Star" target="_blank" rel="noopener">GitHub ↗</a></div>
+      </article>
+
+      <!-- Game Engine -->
+      <article class="proj" data-tags="games">
+        <div class="thumb"><div class="cover cv-games">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="2.5" y="7" width="19" height="10" rx="4"/><path d="M7 10v4M5 12h4M15.4 11h.01M18 13h.01"/></svg>
+          <span class="clabel">C++ · SFML · ECS</span>
+        </div></div>
+        <div class="proj-top"><h4>Custom 2D Game Engine (SFML)</h4></div>
+        <div class="meta">2020 · C++</div>
+        <p>
+          A 2D game project in C++ / SFML built on an Entity Component System architecture, with a
+          tile-map editor (collidable + non-collidable tiles, mouse placement, save/load), plus
+          rendering, input, movement, AABB physics/collision, animation, and camera systems — and a
+          playable demo on top.
+        </p>
+        <p class="note">Uses a third-party ECS header; the engine systems and game are project-authored.</p>
+        <div class="stack">
+          <span>C++</span><span>SFML</span><span>ECS</span><span>Tile maps</span><span>AABB collision</span>
+        </div>
+        <div class="proj-foot"><a href="https://github.com/maikeeb/GameEngine_HK" target="_blank" rel="noopener">GitHub ↗</a></div>
+      </article>
+
+      <!-- Endless Runner -->
+      <article class="proj" data-tags="games">
+        <div class="thumb"><div class="cover cv-games">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="2.5" y="7" width="19" height="10" rx="4"/><path d="M7 10v4M5 12h4M15.4 11h.01M18 13h.01"/></svg>
+          <span class="clabel">C# · UNITY</span>
+        </div></div>
+        <div class="proj-top"><h4>Unity Endless Runner</h4></div>
+        <div class="meta">2020 · C# · Unity</div>
+        <p>
+          An endless runner with procedurally cycling road segments, randomized obstacles, lane
+          movement, jumping, and collision-triggered invincibility with blink feedback. Uses C#
+          delegates/events to decouple road generation from obstacle spawning, and coroutine-driven
+          motion.
+        </p>
+        <div class="stack">
+          <span>C#</span><span>Unity</span><span>Procedural gen</span><span>Coroutines</span>
+        </div>
+        <div class="proj-foot"><a href="https://github.com/maikeeb/EndlessRunner" target="_blank" rel="noopener">GitHub ↗</a></div>
+      </article>
+
+      <!-- Software Testing 3P95 -->
+      <article class="proj" data-tags="qa algorithms">
+        <div class="thumb"><div class="cover cv-qa">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M12 3l7 3v5c0 4.5-3 7.6-7 9-4-1.4-7-4.5-7-9V6z"/><path d="M9 12l2 2 4-4"/></svg>
+          <span class="clabel">PYTHON · TESTING</span>
+        </div></div>
+        <div class="proj-top"><h4>Software Testing &amp; Analysis (COSC 3P95)</h4></div>
+        <div class="meta">2023 · Brock University · Python</div>
+        <p>
+          Coursework harness exploring automated testing techniques: random testing on QuickSort
+          with invariant checking and log generation, plus a delta-debugging system that
+          recursively minimizes a failing input to isolate the smallest bug-reproducing case.
+        </p>
+        <p class="note">Custom coursework harness, framed around testing &amp; fault localization.</p>
+        <div class="stack">
+          <span>Python</span><span>Random testing</span><span>Delta debugging</span><span>Test oracles</span>
+        </div>
+        <div class="proj-foot"><a href="https://github.com/maikeeb/Assignment-1-COSC-3P95" target="_blank" rel="noopener">GitHub ↗</a></div>
+      </article>
+
+      <!-- Sudoku -->
+      <article class="proj" data-tags="algorithms">
+        <div class="thumb"><div class="cover cv-algo">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M9 3v18M15 3v18M3 9h18M3 15h18"/></svg>
+          <span class="clabel">JAVA · OOP</span>
+        </div></div>
+        <div class="proj-top"><h4>Sudoku Board Validator (Java)</h4></div>
+        <div class="meta">2022 · Brock University · Java</div>
+        <p>
+          A Java Sudoku board model with row/column/subgrid constraint checks and a simple BasicIO
+          form for entering moves and refreshing the board. Demonstrates OOP modeling and
+          constraint validation.
+        </p>
+        <p class="note">Board/validation prototype; the recursive solver is an incomplete stub.</p>
+        <div class="stack">
+          <span>Java</span><span>OOP</span><span>Constraint checks</span>
+        </div>
+        <div class="proj-foot"><a href="https://github.com/maikeeb/Sudoku" target="_blank" rel="noopener">GitHub ↗</a></div>
+      </article>
+
+      <!-- Maze -->
+      <article class="proj" data-tags="algorithms">
+        <div class="thumb"><div class="cover cv-algo">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M3 3h18v18H3z"/><path d="M7 3v10h4V7h6M3 11h4M11 21v-4h6V9M15 13h2"/></svg>
+          <span class="clabel">JAVA · RECURSION · DFS</span>
+        </div></div>
+        <div class="proj-top"><h4>Recursive Maze Walk</h4></div>
+        <div class="meta">2022 · Brock University · Java</div>
+        <p>
+          A recursive depth-first algorithm that navigates an ASCII maze loaded from a data file,
+          finding an exit from a random start point — handling boundary detection, wall avoidance,
+          visited-cell tracking, and marking the solved path with directional arrows.
+        </p>
+        <div class="stack">
+          <span>Java</span><span>Recursion</span><span>DFS</span><span>2D arrays</span><span>File I/O</span>
+        </div>
+        <div class="proj-foot"><span class="priv">Coursework</span></div>
+      </article>
+
+      <!-- Socket File Sending -->
+      <article class="proj" data-tags="backend">
+        <div class="thumb"><div class="cover cv-backend">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="3" y="4" width="7" height="7" rx="1.5"/><rect x="14" y="13" width="7" height="7" rx="1.5"/><path d="M6.5 11.5v3.5H13M17.5 12.5V9H11"/></svg>
+          <span class="clabel">PYTHON · SOCKETS</span>
+        </div></div>
+        <div class="proj-top"><h4>TCP File Transfer Prototype</h4></div>
+        <div class="meta">2022 · Python</div>
+        <p>
+          A client/server TCP file-transfer prototype that exchanges file metadata, streams binary
+          chunks over sockets, and shows progress with tqdm — plus a multi-client TCP chatroom
+          prototype with fixed-size headers, per-client server threads, and broadcast loops.
+        </p>
+        <p class="note">Networking-fundamentals prototype (hardcoded hosts/ports, no encryption).</p>
+        <div class="stack">
+          <span>Python</span><span>Sockets</span><span>Threading</span><span>tqdm</span><span>PyInstaller</span>
+        </div>
+        <div class="proj-foot"><span class="priv">Local project</span></div>
+      </article>
+
+      <!-- AskingPackage -->
+      <article class="proj" data-tags="backend">
+        <div class="thumb"><div class="cover cv-backend">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M8 6 3 12l5 6M16 6l5 6-5 6"/><path d="M13 4l-2 16"/></svg>
+          <span class="clabel">PYTHON · LIBRARY</span>
+        </div></div>
+        <div class="proj-top"><h4>Python Console Input Library</h4></div>
+        <div class="meta">2020 · Python</div>
+        <p>
+          A reusable library that simplifies console input handling — validation, automatic error
+          catching, type casting, allowed-answer / min-max / length checks, and a flexible
+          <code>**kwargs</code> API to cut boilerplate in any interactive Python project.
+        </p>
+        <div class="stack">
+          <span>Python</span><span>API design</span><span>Validation</span><span>**kwargs</span>
+        </div>
+        <div class="proj-foot"><a href="https://github.com/maikeeb/AskingPackage" target="_blank" rel="noopener">GitHub ↗</a></div>
+      </article>
+
+      <!-- CS Fundamentals -->
+      <article class="proj" data-tags="algorithms">
+        <div class="thumb"><div class="cover cv-backend">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M8 6 3 12l5 6M16 6l5 6-5 6"/><path d="M13 4l-2 16"/></svg>
+          <span class="clabel">PL THEORY · OS CONCEPTS</span>
+        </div></div>
+        <div class="proj-top"><h4>Programming Languages &amp; Systems (COSC 2P05 / 2P13)</h4></div>
+        <div class="meta">2023 · Brock University · 99 commits</div>
+        <p>
+          Two courses of CS fundamentals: language design, type checking, scope/binding, activation
+          records, dynamic dispatch, and logic-programming foundations; plus computer systems —
+          processes/threads, semaphores/mutexes, virtual memory, scheduling, and deadlock.
+        </p>
+        <p class="note">Best framed as CS fundamentals / coursework knowledge.</p>
+        <div class="stack">
+          <span>PL theory</span><span>OS concepts</span><span>Concurrency</span><span>Type systems</span>
+        </div>
+        <div class="proj-foot"><a href="https://github.com/maikeeb/COSC-2p05---Programming-Languages" target="_blank" rel="noopener">GitHub ↗</a></div>
+      </article>
+
+    </div>
+  </section>
+</div>
+
+<!-- EXPERIENCE -->
+<div class="wrap">
+  <section id="experience">
+    <div class="sec-head"><h3>Experience</h3><div class="line"></div></div>
+    <h2 class="sec-title">Where I've worked</h2>
+    <div class="two-col">
+      <div>
+        <div class="tl">
+          <div class="tl-item">
+            <h4>Coach Bus Wash Bay Attendant</h4>
+            <div class="org">KTS Truck and Coach · Vaughan, ON</div>
+            <div class="when">July 2024 – Present</div>
+            <ul>
+              <li>Execute prioritized daily service lists (exterior / interior / full service) across a commercial bus fleet.</li>
+              <li>Perform fluid servicing (DEF, dump tank, washer fluid) and log work + mileage on paper service records.</li>
+              <li>Spotted the operational gap that became the WashProof platform — and built the software to replace those paper records.</li>
+              <li>Coordinate with mechanics and team to meet fast-paced turnaround schedules.</li>
+            </ul>
+          </div>
+          <div class="tl-item">
+            <h4>Retail Assistant</h4>
+            <div class="org">Shoppers Drug Mart · Grimsby, ON</div>
+            <div class="when">February 2019 – June 2019</div>
+            <ul>
+              <li>Organized and faced product across multiple aisles, balancing thoroughness with speed.</li>
+            </ul>
+          </div>
+          <div class="tl-item">
+            <h4>Dishwasher</h4>
+            <div class="org">Casa Toscana Fine Foods &amp; Cucina · Grimsby, ON</div>
+            <div class="when">June 2018 – August 2018</div>
+            <ul>
+              <li>Maintained dish throughput during peak service in a high-pressure kitchen, adapting to demand spikes.</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <div>
+        <h4 style="font-size:13px;letter-spacing:2px;text-transform:uppercase;color:var(--accent);margin-bottom:18px">Community &amp; early experience</h4>
+        <div class="mini">
+          <h4>Real Programming for Kids (RP4K)</h4>
+          <div class="org">Participant · Oakville, ON</div>
+          <div class="when">June 2016 – August 2020</div>
+          <p>Four summers building games in Java and C++/C#, working alongside university CS students on collaborative projects.</p>
+        </div>
+        <div class="mini">
+          <h4>Chess Club Leader</h4>
+          <div class="org">Grimsby Public Library · Volunteer</div>
+          <div class="when">Summer 2018</div>
+          <p>Organized and ran a community chess club in partnership with the library.</p>
+        </div>
+        <div class="mini">
+          <h4>Open House Presenter</h4>
+          <div class="org">Grimsby Secondary School · Volunteer</div>
+          <div class="when">November 2018</div>
+          <p>Presented the Art and Computer Science programs to incoming students.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+</div>
+
+<!-- CONTACT -->
+<div class="wrap">
+  <section id="contact" style="border-top:none">
+    <div class="contact-box">
+      <h3>Let's build something</h3>
+      <p>Open to junior software developer, full-stack, backend, automation, and QA roles.</p>
+      <div class="contact-links">
+        <a class="btn primary" href="mailto:ckerrigan789@gmail.com">ckerrigan789@gmail.com</a>
+        <a class="btn ghost" href="https://github.com/Maikeeeb" target="_blank" rel="noopener">github.com/Maikeeeb ↗</a>
+        <span class="btn ghost" style="cursor:default">📍 Stoney Creek, ON</span>
+      </div>
+    </div>
+  </section>
+</div>
+
+<footer>
+  <div class="wrap">
+    © <span id="yr"></span> Charlotte Kerrigan · Built as a single static page — Python · Java · TypeScript · C# / .NET
+  </div>
+</footer>
+
+<!-- lightbox -->
+<div id="lb"><img id="lb-img" src="" alt="" /><div class="cap" id="lb-cap"></div></div>
+
+<script>
+  document.getElementById('yr').textContent = new Date().getFullYear();
+
+  // project filtering
+  const filters = document.querySelectorAll('.filter');
+  const cards = document.querySelectorAll('#grid .proj');
+  filters.forEach(btn => {
+    btn.addEventListener('click', () => {
+      filters.forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      const f = btn.dataset.f;
+      cards.forEach(c => {
+        const show = f === 'all' || c.dataset.tags.split(' ').includes(f);
+        c.classList.toggle('hidden', !show);
+      });
+    });
+  });
+
+  // lightbox for live screenshots
+  const lb = document.getElementById('lb');
+  const lbImg = document.getElementById('lb-img');
+  const lbCap = document.getElementById('lb-cap');
+  document.querySelectorAll('img.shot').forEach(img => {
+    img.addEventListener('click', () => {
+      lbImg.src = img.src;
+      lbImg.alt = img.alt;
+      lbCap.textContent = img.dataset.cap || '';
+      lb.classList.add('open');
+    });
+  });
+  lb.addEventListener('click', () => lb.classList.remove('open'));
+  document.addEventListener('keydown', e => { if (e.key === 'Escape') lb.classList.remove('open'); });
+</script>
+</body>
+</html>
