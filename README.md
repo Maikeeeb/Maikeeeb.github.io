@@ -1,16 +1,18 @@
 # Charlotte Kerrigan — Portfolio
 
-A self-contained `index.html` (no build step, no dependencies, no internet required) plus an
-`images/` folder of real project screenshots. Everything else — CSS, the project filter, and the
-click-to-zoom lightbox — lives inside `index.html`.
+A static portfolio (no build step or runtime dependencies) with a dedicated WashProof case study.
+The homepage's CSS, project filter, and click-to-zoom lightbox live inside `index.html`.
 
-**To host, you only need two things:** `index.html` and the `images/` folder (keep them together).
-`shot.mjs` is just the dev helper used to capture the screenshots — you don't need to upload it.
+**To host:** keep `index.html`, `washproof.html`, `washproof.css`, `images/`, and `media/` together.
+The WashProof card's image, title, and link open `washproof.html` in the same tab.
 
 ## Project visuals
-Five cards show **real screenshots of the actual running app** (marked "● Live screenshot",
-click to enlarge): WashProof, Token Trail, TFT Comp Optimizer, Rust Belt Relicworks, and the
-MoviePy Video Editor. The remaining cards (CLI/agent tools, older Java/C++/Unity projects that
+Four cards show **real screenshots of the actual running app** (marked "● Live screenshot",
+click to enlarge): Token Trail, TFT Comp Optimizer, Rust Belt Relicworks, and the
+MoviePy Video Editor. WashProof links to a case study with screenshots and video from an isolated
+Docker demo using fictional records and withheld client identities. See
+[`docs/washproof-case-study.md`](docs/washproof-case-study.md) for attribution and media privacy rules.
+The remaining cards (CLI/agent tools, older Java/C++/Unity projects that
 couldn't be easily run) use themed cover art. To add a real screenshot to any of those later,
 drop a PNG into `images/` and swap its card's `<div class="thumb"><div class="cover …">…</div></div>`
 for `<div class="thumb"><img class="shot" src="images/yourfile.png" alt="…" loading="lazy" data-cap="caption"></div>`.
@@ -18,11 +20,15 @@ for `<div class="thumb"><img class="shot" src="images/yourfile.png" alt="…" lo
 ## View it locally
 Double-click `index.html`. It opens in your browser.
 
+For HTTP preview, run `python -m http.server 5180 --bind 127.0.0.1` from this folder and open
+`http://127.0.0.1:5180/washproof.html`. Run static publishing checks with
+`python -m unittest discover -s tests -v`.
+
 ## Put it online (pick one — all free)
 
 ### Option A — GitHub Pages (recommended, you already have GitHub)
 1. Create a new public repo, e.g. `portfolio` (or name it `Maikeeeb.github.io` to get a clean root URL).
-2. Upload `index.html` to it (drag-and-drop on github.com works).
+2. Upload the HTML/CSS files and the `images/` and `media/` folders (keep their relative paths).
 3. Repo **Settings → Pages → Source: `main` branch, `/root`** → Save.
 4. Live in ~1 minute at:
    - `https://Maikeeeb.github.io/portfolio/`  (if repo is named `portfolio`), or

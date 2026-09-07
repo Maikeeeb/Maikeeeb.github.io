@@ -1,1 +1,5 @@
 .DS_Store
+
+# Local preview, capture sources, and verification output
+.runtime/
+__pycache__/

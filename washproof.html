@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>WashProof — A client software case study | Charlotte Kerrigan</title>
+  <meta name="description" content="How Charlotte Kerrigan turned a wash-bay workflow into a full-stack platform for service records, audit history, and billing preparation. An anonymized client case study.">
+  <link rel="canonical" href="https://maikeeeb.github.io/washproof.html">
+  <meta property="og:title" content="WashProof — From wash bay to software">
+  <meta property="og:description" content="A full-stack client project: the problem, my contribution, and the engineering behind traceable service records.">
+  <meta property="og:type" content="article">
+  <meta property="og:url" content="https://maikeeeb.github.io/washproof.html">
+  <link rel="stylesheet" href="washproof.css">
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+  <header class="site-header">
+    <nav class="wrap nav" aria-label="Main navigation">
+      <a class="brand" href="index.html">Charlotte <span>Kerrigan</span></a>
+      <a class="back" href="index.html#projects">← All projects</a>
+    </nav>
+  </header>
+  <main id="main" class="wrap">
+    <section class="hero" aria-labelledby="title">
+      <div class="eyebrow">Selected work / 01 · Client software</div>
+      <div class="hero-grid">
+        <div>
+          <div class="wordmark">Wash<span>Proof</span><span class="wordmark-dot">.</span></div>
+          <h1 id="title">From the wash bay<br>to a record you<br>can <em>stand behind.</em></h1>
+        </div>
+        <div class="hero-story">
+          <p class="lead">I saw the limits of paper service logs while working in a bus wash bay. Then I helped build the software to replace them.</p>
+          <p>WashProof connects the daily work queue, staff sign-off, supervisor review, and billing preparation in one full-stack application.</p>
+          <div class="actions">
+            <a class="button primary" href="#workflow">Explore the workflow <span aria-hidden="true">↓</span></a>
+            <a class="text-link" href="#engineering">Go deeper: engineering ↗</a>
+          </div>
+        </div>
+      </div>
+      <dl class="project-facts">
+        <div><dt>My role</dt><dd>Primary contributor &amp; architect</dd></div>
+        <div><dt>Team</dt><dd>Two developers</dd></div>
+        <div><dt>Project</dt><dd>2026 · Ongoing development</dd></div>
+        <div><dt>Focus</dt><dd>Full-stack · Backend · Quality</dd></div>
+      </dl>
+    </section>
+
+    <figure class="product-figure">
+      <a href="images/washproof-records.png" aria-label="Open the full-size WashProof records screenshot"><img src="images/washproof-records.png" width="1440" height="1000" alt="The running WashProof records screen showing fictional demonstration vehicles, requested services, and completion status."></a>
+      <figcaption><span>01 / The actual application</span> Captured from a separate Docker demo instance. Company details are withheld and all records and staff identities are fictional. Select the image to view full size.</figcaption>
+    </figure>
+    <p class="privacy-note"><span aria-hidden="true">◇</span> Shared with the client’s permission. Client identity, branding, staff, fleet data, and operational details are withheld.</p>
+
+    <nav class="contents" aria-label="Case study sections">
+      <a href="#problem">The problem</a><a href="#contribution">My contribution</a><a href="#workflow">The workflow</a><a href="#engineering">Engineering</a><a href="#quality">Quality &amp; next steps</a>
+    </nav>
+
+    <section id="problem" class="section split">
+      <div><div class="eyebrow">The starting point</div><h2>The work was physical.<br>The record was paper.</h2></div>
+      <div class="prose">
+        <p>On the wash-bay floor, staff need to know which vehicle comes next and which services it needs. In the office, someone needs to know what was completed, by whom, and when, before preparing billing records.</p>
+        <p>Paper logs connected those two worlds. The opportunity was to capture the record as the work happened, instead of leaving the office to reconstruct it later.</p>
+        <p class="callout">The design question: how do you make sign-off straightforward for the person doing the work, while keeping the resulting record useful to someone reviewing it?</p>
+      </div>
+    </section>
+
+    <section id="contribution" class="section">
+      <div class="eyebrow">Ownership &amp; collaboration</div>
+      <h2>What I brought to the project.</h2>
+      <div class="contribution-grid">
+        <article><span class="index">01</span><h3>Turned a real need into requirements</h3><p>I identified the operational gap, proposed the product, and translated the workflow into documented requirements and implementation work.</p></article>
+        <article><span class="index">02</span><h3>Led the architecture</h3><p>My focus was the full-stack structure and the record lifecycle: backend rules, permissions, audit history, concurrent edits, and repeat submissions.</p></article>
+        <article><span class="index">03</span><h3>Built for change and verification</h3><p>The project includes domain, API, security, and UI tests, plus requirements traceability and deployment documentation to support continued development.</p></article>
+      </div>
+      <p class="attribution"><strong>Team credit.</strong> This is a two-person project. My collaborator contributed the kiosk/washlist UI and customer-portal flows. The workflow shown here represents the combined product; my primary role is product direction and architecture, with implementation across the stack.</p>
+    </section>
+
+    <section id="workflow" class="section">
+      <div class="section-heading"><div><div class="eyebrow">A record from start to finish</div><h2>One workflow. Three perspectives.</h2></div><p>Each step serves a different person, while preserving the same service record.</p></div>
+      <div class="video-grid">
+        <figure class="video-figure">
+          <video controls playsinline preload="none" poster="images/washproof-checklist.png" width="1440" height="1000" aria-label="Silent recording of the real WashProof kiosk checklist and sign-off workflow" aria-describedby="kiosk-video-caption">
+            <source src="media/washproof-kiosk.mp4" type="video/mp4">
+            Your browser cannot play this video. <a href="media/washproof-kiosk.mp4">Download the kiosk walkthrough.</a>
+          </video>
+          <figcaption id="kiosk-video-caption"><span>02 / Work the checklist</span> 15 seconds · Silent · Use full screen for detail</figcaption>
+          <p>Follow a queued vehicle into its checklist, mark the requested services done, and confirm sign-off. The completed job returns to the queue’s recent history.</p>
+        </figure>
+        <figure class="video-figure">
+          <video controls playsinline preload="none" poster="images/washproof-review.png" width="1440" height="1000" aria-label="Silent recording of the real WashProof review, invoice, history, and spreadsheet export workflow" aria-describedby="review-video-caption">
+            <source src="media/washproof-review.mp4" type="video/mp4">
+            Your browser cannot play this video. <a href="media/washproof-review.mp4">Download the review walkthrough.</a>
+          </video>
+          <figcaption id="review-video-caption"><span>03 / Review the result</span> 18 seconds · Silent · Use full screen for detail</figcaption>
+          <p>Open the completed record, mark it reviewed and invoiced, inspect its change history, and export the records as a spreadsheet.</p>
+        </figure>
+      </div>
+      <ol class="workflow-list">
+        <li><span class="step">1</span><div><span class="role">Wash-bay staff</span><h3>Know what to do. Record what was done.</h3><p>A daily queue leads into a touch-oriented checklist for interior, exterior, and other requested services. Staff record mileage and consumables, then sign off. Completion records who finished the work and when.</p></div><span class="result">Queue → signed-off work</span></li>
+        <li><span class="step">2</span><div><span class="role">Supervisors</span><h3>Review the record with context.</h3><p>Review screens bring completed work and record history together. Edits are checked against the user’s permissions and the record’s version, so a stale screen cannot silently overwrite a newer change.</p></div><span class="result">Record → review</span></li>
+        <li><span class="step">3</span><div><span class="role">Office &amp; administration</span><h3>Prepare billing from structured records.</h3><p>Records move through Unreviewed, Reviewed, Invoiced, and Locked states. Spreadsheet exports support the office’s existing tools, while protected transitions and recorded overrides preserve context.</p></div><span class="result">Review → export &amp; lock</span></li>
+      </ol>
+      <p class="small-note">Both videos show real interactions with the current software, recorded on September 7, 2026 using fictional demo data. Service completion and invoice status are separate concepts: finishing a wash does not automatically mean it has been reviewed or invoiced.</p>
+      <div class="screenshot-grid">
+        <figure><a href="images/washproof-queue.png" aria-label="Open full-size kiosk queue screenshot"><img src="images/washproof-queue.png" width="1440" height="1000" loading="lazy" alt="Actual WashProof kiosk queue with fictional vehicles waiting for service."></a><figcaption><span>The operator’s view</span> A focused queue for the next job.</figcaption></figure>
+        <figure><a href="images/washproof-history.png" aria-label="Open full-size record history screenshot"><img src="images/washproof-history.png" width="1440" height="1000" loading="lazy" alt="Actual WashProof record history showing changes made by fictional demo users."></a><figcaption><span>The reviewer’s view</span> A history behind the current record.</figcaption></figure>
+      </div>
+    </section>
+
+    <section id="engineering" class="section">
+      <div class="section-heading"><div><div class="eyebrow">Under the hood</div><h2>The decisions behind the interface.</h2></div><p>A closer look at boundaries, failure handling, and the tradeoffs behind them.</p></div>
+      <div class="architecture" aria-label="Architecture: React presentation calls the ASP.NET Core API; application contracts and domain rules govern operations; infrastructure services persist through EF Core to PostgreSQL.">
+        <div><span>Presentation</span><strong>React + TypeScript</strong><small>Forms, kiosk, review screens</small></div><span class="arrow" aria-hidden="true">→</span>
+        <div><span>HTTP boundary</span><strong>ASP.NET Core</strong><small>Identity, requests, responses</small></div><span class="arrow" aria-hidden="true">→</span>
+        <div><span>Rules &amp; persistence</span><strong>Application / Domain / Infrastructure</strong><small>Use cases · EF Core · PostgreSQL</small></div>
+      </div>
+      <p class="architecture-note">The React client presents state and validation feedback. The backend enforces business rules. Application contracts and domain models define the boundaries; infrastructure services implement persistence-backed workflows. The main stack is .NET 8, EF Core, PostgreSQL, React, TypeScript, and Tailwind.</p>
+      <div class="decisions">
+        <details open><summary><span>01</span> Protect a record when two people edit it</summary><div class="detail-body"><p><strong>The failure:</strong> two users load the same record; the second save could erase the first person’s changes.</p><p><strong>The implementation:</strong> updates carry an expected version. The service checks it, and the database update also checks the original version through an EF Core concurrency token. A losing save becomes an HTTP 409 conflict with a reload instruction.</p><p><strong>The tradeoff:</strong> optimistic concurrency avoids holding a lock while someone has a form open. It requires the user to reload after a conflict instead of silently merging potentially conflicting service or billing data.</p></div></details>
+        <details><summary><span>02</span> Make retries predictable</summary><div class="detail-body"><p><strong>The failure:</strong> a repeated request can create a duplicate record or repeat a side effect.</p><p><strong>The implementation:</strong> record writes accept idempotency keys scoped to the user and operation. A stored response can be replayed for the same key. The record, audit side effects, and replay response are saved within a database transaction.</p><p><strong>The tradeoff:</strong> disabling a button is useful feedback, but cannot protect the API from retries. Server-side replay storage adds persistence and key-lifecycle responsibilities. This is duplicate protection for supported operations, not a blanket claim of exactly-once delivery.</p></div></details>
+        <details><summary><span>03</span> Treat review and billing as explicit state changes</summary><div class="detail-body"><p><strong>The failure:</strong> a generic editable “status” field makes it easy to bypass review or change a finalized record without context.</p><p><strong>The implementation:</strong> backend transition rules separate service completion from invoice status. Role checks restrict actions; history captures changes and privileged overrides so the interface can explain how a record reached its current state.</p><p><strong>The tradeoff:</strong> explicit transitions need more tests than a free-form field, but make allowed and rejected actions reviewable. This supports billing preparation; it is not a full accounting system.</p></div></details>
+        <details><summary><span>04</span> Account for a shared device</summary><div class="detail-body"><p><strong>The constraint:</strong> the kiosk device and the employee using it have different lifetimes. Signing out a worker should not erase the device’s setup.</p><p><strong>The implementation:</strong> device context is separate from employee sessions. Employee PINs are hashed; persisted session tokens are hashed too. HttpOnly cookies carry authentication, and server-side idle and absolute expiry boundaries limit session lifetime. Passive polling does not count as user activity.</p><p><strong>The tradeoff:</strong> explicit sessions support revocation and shared-device workflows, while requiring careful expiry and cross-tab handling. Broader authorization and isolation work remains on the project backlog; these mechanisms alone are not a security certification.</p></div></details>
+      </div>
+    </section>
+
+    <section id="quality" class="section split">
+      <div><div class="eyebrow">Evidence over claims</div><h2>Test the ways<br>the workflow breaks.</h2><p class="section-intro">The test strategy checks business behavior and failure boundaries, not just whether a screen renders.</p></div>
+      <div class="test-evidence">
+        <article><h3>Domain behavior</h3><p>xUnit tests exercise validation, permissions, invoice transitions, audit effects, and repeated idempotency-key replays.</p></article>
+        <article><h3>Persistence under contention</h3><p>A relational SQLite test uses two independent EF contexts to update the same original record version. It verifies that the losing write raises a concurrency exception and the winning data remains intact.</p></article>
+        <article><h3>API and browser-facing contracts</h3><p>ASP.NET WebApplicationFactory tests cover HTTP responses and sessions. Vitest, React Testing Library, and MSW cover UI behavior, validation feedback, and API interactions.</p></article>
+        <p class="small-note">Testing limit: many backend tests use EF InMemory; the targeted SQLite test checks relational behavior, but does not replace PostgreSQL integration testing. No unverified coverage percentage or test-pass total is claimed here.</p>
+      </div>
+    </section>
+
+    <section class="section status-section" aria-labelledby="status-title">
+      <div class="eyebrow">Where it stands</div><h2 id="status-title">A working product. An ongoing project.</h2>
+      <div class="status-grid">
+        <div><h3><span class="status-dot"></span>Implemented in the codebase</h3><p>Queue and checklist workflows, attributed completion, review and invoice states, audit history, spreadsheet exports, shared-device sessions, and automated test suites.</p></div>
+        <div><h3><span class="status-dot ongoing"></span>Continuing development</h3><p>Photo-proof, defect reporting, and customer-request flows have implementations. Storage readiness, authorization boundaries, and parts of their test coverage remain active follow-up work. I treat these as ongoing capabilities, not a finished rollout.</p></div>
+      </div>
+      <p class="outcome"><strong>What this demonstrates:</strong> taking firsthand domain knowledge through requirements, collaborative implementation, data integrity decisions, and verification. The delivered capability is structured, traceable service records; deployment scale, time savings, and financial impact are not asserted.</p>
+    </section>
+
+    <section class="closing" aria-labelledby="contact-title">
+      <div><div class="eyebrow">Continue the conversation</div><h2 id="contact-title">Let’s talk about<br>the decisions behind it.</h2><p>I’m looking for software development opportunities where I can bring this mix of practical problem-solving, backend thinking, and care for the people using the product.</p></div>
+      <div class="closing-actions"><a class="button primary" href="mailto:ckerrigan789@gmail.com">Get in touch ↗</a><a class="text-link" href="index.html#projects">← Explore my other projects</a></div>
+    </section>
+  </main>
+  <footer class="wrap footer">Charlotte Kerrigan <span>WashProof · Anonymized client case study · September 2026</span></footer>
+</body>
+</html>
