@@ -116,8 +116,6 @@
     margin-bottom:16px;background:var(--bg-soft);border:1px solid var(--border);
   }
   .thumb img{width:100%;height:100%;object-fit:cover;object-position:top center;display:block}
-  .thumb img.shot{cursor:zoom-in;transition:transform .35s}
-  .proj:hover .thumb img.shot{transform:scale(1.03)}
   .live-badge{
     position:absolute;bottom:8px;right:8px;z-index:2;
     font-size:10.5px;font-weight:600;letter-spacing:.4px;
@@ -156,12 +154,6 @@
   .proj-foot a{color:var(--accent);font-weight:600;display:inline-flex;align-items:center;gap:5px}
   .proj-foot a:hover{color:var(--accent-soft)}
   .proj-foot .priv{color:var(--faint);font-weight:600}
-
-  /* ---------- lightbox ---------- */
-  #lb{position:fixed;inset:0;z-index:100;background:rgba(8,11,15,.92);display:none;align-items:center;justify-content:center;padding:30px;cursor:zoom-out;backdrop-filter:blur(4px)}
-  #lb.open{display:flex}
-  #lb img{max-width:100%;max-height:100%;border-radius:10px;border:1px solid var(--border-bright);box-shadow:0 20px 60px rgba(0,0,0,.6)}
-  #lb .cap{position:absolute;bottom:20px;left:0;right:0;text-align:center;color:var(--muted);font-size:13px}
 
   /* ---------- experience / timeline ---------- */
   .tl{position:relative;padding-left:26px}
@@ -373,8 +365,8 @@
     <h2 class="sec-title">Selected work</h2>
     <p class="sec-sub">
       A mix of a real client product, group academic work, and personal builds.
-      Cards marked <span style="color:var(--accent-soft)">● Live screenshot</span> show the
-      actual running app — click to enlarge. Use the filters to narrow by focus area.
+      Open any project for its contribution, workflow, evidence, and engineering details.
+      Use the filters to narrow by focus area.
     </p>
 
     <div class="filters" id="filters">
@@ -417,15 +409,15 @@
 
       <!-- Token Trail -->
       <article class="proj" data-tags="fullstack backend qa algorithms">
-        <div class="thumb">
-          <span class="live-badge"><span class="pulse"></span>Live screenshot</span>
-          <img class="shot" src="images/token-trail.png" alt="Token Trail landing page" loading="lazy" data-cap="Token Trail — instructor/student landing page (running locally)" />
-        </div>
+        <a class="thumb" href="token-trail.html" aria-label="Explore Token Trail">
+          <span class="live-badge">Application capture</span>
+          <img src="images/token-report.png" alt="Token Trail ranked comparison results with fictional submissions" loading="lazy" />
+        </a>
         <div class="proj-top">
-          <h4>Token Trail — Code Similarity Detection</h4>
+          <h4><a href="token-trail.html">Token Trail — Code Similarity Detection</a></h4>
           <span class="badge group">Group</span>
         </div>
-        <div class="meta">2026 · Brock University group project · 26 commits</div>
+        <div class="meta">2026 · Brock University group project</div>
         <p>
           Academic-integrity tool for programming assignments. I built the instructor-facing
           similarity-result APIs around the team's analysis engine — ranked pair lists, side-by-side
@@ -436,16 +428,16 @@
         <div class="stack">
           <span>Python</span><span>FastAPI</span><span>React + Vite</span><span>MongoDB</span><span>Docker Compose</span><span>Tree-sitter</span>
         </div>
-        <div class="proj-foot"><a href="https://github.com/Ikechukwu-Okogwu/token-trail" target="_blank" rel="noopener">GitHub ↗</a></div>
+        <div class="proj-foot"><a href="token-trail.html">Read the case study ↗</a><a href="https://github.com/Ikechukwu-Okogwu/token-trail" target="_blank" rel="noopener">GitHub ↗</a></div>
       </article>
 
       <!-- TwitchClipper -->
       <article class="proj" data-tags="backend automation algorithms qa">
-        <div class="thumb"><div class="cover cv-auto">
+        <a class="thumb" href="twitchclipper.html" aria-label="Explore TwitchClipper"><div class="cover cv-auto">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="12" cy="12" r="3.2"/><path d="M12 2v3M12 19v3M2 12h3M19 12h3M4.9 4.9l2.1 2.1M17 17l2.1 2.1M19.1 4.9 17 7M7 17l-2.1 2.1"/></svg>
           <span class="clabel">PYTHON · FASTAPI · FFMPEG</span>
-        </div></div>
-        <div class="proj-top"><h4>TwitchClipper — VOD Highlight Generator</h4></div>
+        </div></a>
+        <div class="proj-top"><h4><a href="twitchclipper.html">TwitchClipper — VOD Highlight Generator</a></h4></div>
         <div class="meta">March 2026</div>
         <p>
           Generates highlight montages from long Twitch VODs by using <em>chat activity</em>
@@ -457,36 +449,36 @@
         <div class="stack">
           <span>Python</span><span>FastAPI</span><span>ffmpeg</span><span>Selenium</span><span>MoviePy</span><span>SQLite</span><span>.NET 8 WPF</span>
         </div>
-        <div class="proj-foot"><a href="https://github.com/Maikeeeb/TwitchClipper" target="_blank" rel="noopener">GitHub ↗</a></div>
+        <div class="proj-foot"><a href="twitchclipper.html">Read the case study ↗</a><a href="https://github.com/Maikeeeb/TwitchClipper" target="_blank" rel="noopener">GitHub ↗</a></div>
       </article>
 
       <!-- tftcalcs -->
       <article class="proj" data-tags="fullstack backend algorithms qa">
-        <div class="thumb">
-          <span class="live-badge"><span class="pulse"></span>Live screenshot</span>
-          <img class="shot" src="images/tftcalcs.png" alt="TFT Calculator optimizer UI" loading="lazy" data-cap="TFT Comp Optimizer — solver modes and configuration (frontend + FastAPI running locally)" />
-        </div>
-        <div class="proj-top"><h4>TFT Team Comp Optimizer</h4></div>
+        <a class="thumb" href="tft-optimizer.html" aria-label="Explore TFT Team Comp Optimizer">
+          <span class="live-badge">Application capture</span>
+          <img src="images/tft-results.png" alt="TFT Calculator roster returned by the local solver" loading="lazy" />
+        </a>
+        <div class="proj-top"><h4><a href="tft-optimizer.html">TFT Team Comp Optimizer</a></h4></div>
         <div class="meta">January 2026</div>
         <p>
           Full-stack optimizer for Teamfight Tactics compositions, pairing a Python beam-search
           solver with a FastAPI backend and a React + TypeScript frontend. The solver respects
-          team-size limits, trait blacklists, and emblem caps, and folds in live MetaTFT stats as
-          tie-breakers. Maintained 92%+ Python coverage with pre-commit hooks.
+          team-size limits, trait blacklists, and emblem caps, and uses imported MetaTFT statistics as
+          scoring inputs. Includes pytest tests and pre-commit hooks.
         </p>
         <div class="stack">
           <span>Python</span><span>FastAPI</span><span>React</span><span>TypeScript</span><span>Vite</span><span>MUI</span><span>pytest</span>
         </div>
-        <div class="proj-foot"><a href="https://github.com/Maikeeeb/tftcalcs" target="_blank" rel="noopener">GitHub ↗</a></div>
+        <div class="proj-foot"><a href="tft-optimizer.html">Read the case study ↗</a><a href="https://github.com/Maikeeeb/tftcalcs" target="_blank" rel="noopener">GitHub ↗</a></div>
       </article>
 
       <!-- Deep Research Agent -->
       <article class="proj" data-tags="ai backend automation">
-        <div class="thumb"><div class="cover cv-ai">
+        <a class="thumb" href="deep-research.html" aria-label="Explore Deep Research Agent System"><div class="cover cv-ai">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="5" cy="6" r="2"/><circle cx="5" cy="18" r="2"/><circle cx="19" cy="12" r="2"/><circle cx="12" cy="12" r="1.7"/><path d="M6.9 6.9 10.6 11M6.9 17.1 10.6 13M13.7 12H17"/></svg>
           <span class="clabel">AGENTS · PYTHON · JSON</span>
-        </div></div>
-        <div class="proj-top"><h4>Deep Research Agent System</h4></div>
+        </div></a>
+        <div class="proj-top"><h4><a href="deep-research.html">Deep Research Agent System</a></h4></div>
         <div class="meta">2026 · Custom agent skills + Python tooling</div>
         <p>
           A multi-agent research workflow that turns a complex question into a traceable run:
@@ -498,16 +490,16 @@
         <div class="stack">
           <span>Python</span><span>argparse</span><span>JSON artifacts</span><span>Agent orchestration</span><span>subprocess</span>
         </div>
-        <div class="proj-foot"><span class="priv">Local project</span></div>
+        <div class="proj-foot"><a href="deep-research.html">Read the case study ↗</a><span class="priv">Local project</span></div>
       </article>
 
       <!-- GitHub Issue Orchestration -->
       <article class="proj" data-tags="ai automation qa">
-        <div class="thumb"><div class="cover cv-ai">
+        <a class="thumb" href="issue-orchestration.html" aria-label="Explore GitHub Issue Orchestration Agents"><div class="cover cv-ai">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="5" cy="6" r="2"/><circle cx="5" cy="18" r="2"/><circle cx="19" cy="12" r="2"/><circle cx="12" cy="12" r="1.7"/><path d="M6.9 6.9 10.6 11M6.9 17.1 10.6 13M13.7 12H17"/></svg>
           <span class="clabel">AGENTS · GITHUB CLI · TDD</span>
-        </div></div>
-        <div class="proj-top"><h4>GitHub Issue Orchestration Agents</h4></div>
+        </div></a>
+        <div class="proj-top"><h4><a href="issue-orchestration.html">GitHub Issue Orchestration Agents</a></h4></div>
         <div class="meta">2026 · Custom skills + GitHub CLI workflows</div>
         <p>
           Turns GitHub issues into controlled, test-first, multi-agent implementation pipelines.
@@ -519,16 +511,16 @@
         <div class="stack">
           <span>Agent orchestration</span><span>GitHub CLI</span><span>Git worktrees</span><span>Playwright</span><span>TDD gates</span>
         </div>
-        <div class="proj-foot"><span class="priv">Local project</span></div>
+        <div class="proj-foot"><a href="issue-orchestration.html">Read the case study ↗</a><span class="priv">Local project</span></div>
       </article>
 
       <!-- Rust Belt Relicworks -->
       <article class="proj" data-tags="games qa">
-        <div class="thumb">
-          <span class="live-badge"><span class="pulse"></span>Live screenshot</span>
-          <img class="shot" src="images/rust-belt-relicworks.png" alt="Rust Belt Relicworks game UI" loading="lazy" data-cap="Rust Belt Relicworks — the live idle-game loop (stations, resources, workshop log)" />
-        </div>
-        <div class="proj-top"><h4>Rust Belt Relicworks — Idle Game Prototype</h4></div>
+        <a class="thumb" href="relicworks.html" aria-label="Explore Rust Belt Relicworks">
+          <span class="live-badge">Application capture</span>
+          <img src="images/relicworks-workshop.jpg" alt="Rust Belt Relicworks game UI" loading="lazy" />
+        </a>
+        <div class="proj-top"><h4><a href="relicworks.html">Rust Belt Relicworks — Idle Game Prototype</a></h4></div>
         <div class="meta">2026</div>
         <p>
           A browser idle/incremental game prototype about restoring a Rust Belt workshop. Typed
@@ -540,16 +532,16 @@
         <div class="stack">
           <span>Svelte 5</span><span>TypeScript</span><span>Vite</span><span>Vitest</span><span>Playwright</span>
         </div>
-        <div class="proj-foot"><a href="https://github.com/Maikeeeb/rust-belt-relicworks" target="_blank" rel="noopener">GitHub ↗</a></div>
+        <div class="proj-foot"><a href="relicworks.html">Read the case study ↗</a><span class="priv">Private prototype</span></div>
       </article>
 
       <!-- Twitch Compilation -->
       <article class="proj" data-tags="automation">
-        <div class="thumb"><div class="cover cv-auto">
+        <a class="thumb" href="twitch-compilation.html" aria-label="Explore Automatic Twitch Compilation"><div class="cover cv-auto">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="12" cy="12" r="3.2"/><path d="M12 2v3M12 19v3M2 12h3M19 12h3M4.9 4.9l2.1 2.1M17 17l2.1 2.1M19.1 4.9 17 7M7 17l-2.1 2.1"/></svg>
           <span class="clabel">PYTHON · SELENIUM · MOVIEPY</span>
-        </div></div>
-        <div class="proj-top"><h4>Automatic Twitch Compilation</h4></div>
+        </div></a>
+        <div class="proj-top"><h4><a href="twitch-compilation.html">Automatic Twitch Compilation</a></h4></div>
         <div class="meta">2020 · 100+ hours</div>
         <p>
           End-to-end pipeline that scrapes high-viewed Twitch clips from the last 24 hours with
@@ -561,16 +553,16 @@
         <div class="stack">
           <span>Python</span><span>Selenium</span><span>MoviePy</span><span>Threading</span><span>Linux</span>
         </div>
-        <div class="proj-foot"><a href="https://github.com/maikeeb/YoutubeCompilation" target="_blank" rel="noopener">GitHub ↗</a></div>
+        <div class="proj-foot"><a href="twitch-compilation.html">Read the case study ↗</a><a href="https://github.com/maikeeb/YoutubeCompilation" target="_blank" rel="noopener">GitHub ↗</a></div>
       </article>
 
       <!-- BarGraphVideo -->
       <article class="proj" data-tags="automation">
-        <div class="thumb"><div class="cover cv-auto">
+        <a class="thumb" href="reddit-video.html" aria-label="Explore Reddit Short-Form Video Automation"><div class="cover cv-auto">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="12" cy="12" r="3.2"/><path d="M12 2v3M12 19v3M2 12h3M19 12h3M4.9 4.9l2.1 2.1M17 17l2.1 2.1M19.1 4.9 17 7M7 17l-2.1 2.1"/></svg>
           <span class="clabel">PYTHON · SELENIUM · gTTS</span>
-        </div></div>
-        <div class="proj-top"><h4>Reddit Short-Form Video Automation</h4></div>
+        </div></a>
+        <div class="proj-top"><h4><a href="reddit-video.html">Reddit Short-Form Video Automation</a></h4></div>
         <div class="meta">2022</div>
         <p>
           Pipeline that scrapes Reddit posts/comments with Selenium, screenshots the content,
@@ -581,17 +573,17 @@
         <div class="stack">
           <span>Python</span><span>Selenium</span><span>MoviePy</span><span>gTTS</span><span>YouTube Data API</span>
         </div>
-        <div class="proj-foot"><span class="priv">Local project</span></div>
+        <div class="proj-foot"><a href="reddit-video.html">Read the case study ↗</a><span class="priv">Local project</span></div>
       </article>
 
       <!-- MoviePy Editor -->
       <article class="proj" data-tags="automation games">
-        <div class="thumb">
-          <span class="live-badge"><span class="pulse"></span>Live screenshot</span>
-          <img class="shot" src="images/moviepy-editor.png" alt="MoviePy Video Editor desktop window" loading="lazy" data-cap="MoviePy Video Editor — the pygame desktop UI (Import / Export / timeline)" />
-        </div>
-        <div class="proj-top"><h4>MoviePy Video Editor</h4></div>
-        <div class="meta">2020 · 26 commits</div>
+        <a class="thumb" href="moviepy-editor.html" aria-label="Explore MoviePy Video Editor">
+          <span class="live-badge">Application capture</span>
+          <img src="images/moviepy-editor.png" alt="MoviePy Video Editor desktop window" loading="lazy" />
+        </a>
+        <div class="proj-top"><h4><a href="moviepy-editor.html">MoviePy Video Editor</a></h4></div>
+        <div class="meta">2020</div>
         <p>
           A standalone desktop-style video editor in Python with a PyGame / pygame_gui interface —
           import/export controls, a clip timeline with drag/reorder, fades, text overlays, and
@@ -601,16 +593,16 @@
         <div class="stack">
           <span>Python</span><span>MoviePy</span><span>PyGame</span><span>pygame_gui</span><span>Tkinter</span>
         </div>
-        <div class="proj-foot"><a href="https://github.com/Maikeeeb/Moviepy-Video-Editor" target="_blank" rel="noopener">GitHub ↗</a></div>
+        <div class="proj-foot"><a href="moviepy-editor.html">Read the case study ↗</a><a href="https://github.com/Maikeeeb/Moviepy-Video-Editor" target="_blank" rel="noopener">GitHub ↗</a></div>
       </article>
 
       <!-- A* -->
       <article class="proj" data-tags="algorithms">
-        <div class="thumb"><div class="cover cv-algo">
+        <a class="thumb" href="astar.html" aria-label="Explore A* Pathfinding Benchmark"><div class="cover cv-algo">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="5" cy="6" r="2"/><circle cx="12" cy="18" r="2"/><circle cx="19" cy="8" r="2"/><path d="M6.5 7.3 10.8 16.4M13.6 16.7 17.6 9.4M6.9 6 17.1 7.6"/></svg>
           <span class="clabel">JAVA · GRAPH SEARCH</span>
-        </div></div>
-        <div class="proj-top"><h4>A* Pathfinding Benchmark</h4></div>
+        </div></a>
+        <div class="proj-top"><h4><a href="astar.html">A* Pathfinding Benchmark</a></h4></div>
         <div class="meta">2023 · Java</div>
         <p>
           A* pathfinding over randomly generated grid boards with configurable wall frequency and
@@ -620,16 +612,16 @@
         <div class="stack">
           <span>Java</span><span>PriorityQueue</span><span>Graph search</span><span>Heuristics</span>
         </div>
-        <div class="proj-foot"><a href="https://github.com/maikeeb/A_Star" target="_blank" rel="noopener">GitHub ↗</a></div>
+        <div class="proj-foot"><a href="astar.html">Read the case study ↗</a><span class="priv">Local source</span></div>
       </article>
 
       <!-- Game Engine -->
       <article class="proj" data-tags="games">
-        <div class="thumb"><div class="cover cv-games">
+        <a class="thumb" href="sfml-engine.html" aria-label="Explore Custom 2D Game Engine"><div class="cover cv-games">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="2.5" y="7" width="19" height="10" rx="4"/><path d="M7 10v4M5 12h4M15.4 11h.01M18 13h.01"/></svg>
           <span class="clabel">C++ · SFML · ECS</span>
-        </div></div>
-        <div class="proj-top"><h4>Custom 2D Game Engine (SFML)</h4></div>
+        </div></a>
+        <div class="proj-top"><h4><a href="sfml-engine.html">Custom 2D Game Engine (SFML)</a></h4></div>
         <div class="meta">2020 · C++</div>
         <p>
           A 2D game project in C++ / SFML built on an Entity Component System architecture, with a
@@ -641,16 +633,16 @@
         <div class="stack">
           <span>C++</span><span>SFML</span><span>ECS</span><span>Tile maps</span><span>AABB collision</span>
         </div>
-        <div class="proj-foot"><a href="https://github.com/maikeeb/GameEngine_HK" target="_blank" rel="noopener">GitHub ↗</a></div>
+        <div class="proj-foot"><a href="sfml-engine.html">Read the case study ↗</a><a href="https://github.com/maikeeb/GameEngine_HK" target="_blank" rel="noopener">GitHub ↗</a></div>
       </article>
 
       <!-- Endless Runner -->
       <article class="proj" data-tags="games">
-        <div class="thumb"><div class="cover cv-games">
+        <a class="thumb" href="endless-runner.html" aria-label="Explore Unity Endless Runner"><div class="cover cv-games">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="2.5" y="7" width="19" height="10" rx="4"/><path d="M7 10v4M5 12h4M15.4 11h.01M18 13h.01"/></svg>
           <span class="clabel">C# · UNITY</span>
-        </div></div>
-        <div class="proj-top"><h4>Unity Endless Runner</h4></div>
+        </div></a>
+        <div class="proj-top"><h4><a href="endless-runner.html">Unity Endless Runner</a></h4></div>
         <div class="meta">2020 · C# · Unity</div>
         <p>
           An endless runner with procedurally cycling road segments, randomized obstacles, lane
@@ -661,36 +653,36 @@
         <div class="stack">
           <span>C#</span><span>Unity</span><span>Procedural gen</span><span>Coroutines</span>
         </div>
-        <div class="proj-foot"><a href="https://github.com/maikeeb/EndlessRunner" target="_blank" rel="noopener">GitHub ↗</a></div>
+        <div class="proj-foot"><a href="endless-runner.html">Read the case study ↗</a><a href="https://github.com/maikeeb/EndlessRunner" target="_blank" rel="noopener">GitHub ↗</a></div>
       </article>
 
       <!-- Software Testing 3P95 -->
       <article class="proj" data-tags="qa algorithms">
-        <div class="thumb"><div class="cover cv-qa">
+        <a class="thumb" href="software-testing.html" aria-label="Explore Software Testing &amp; Analysis"><div class="cover cv-qa">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M12 3l7 3v5c0 4.5-3 7.6-7 9-4-1.4-7-4.5-7-9V6z"/><path d="M9 12l2 2 4-4"/></svg>
           <span class="clabel">PYTHON · TESTING</span>
-        </div></div>
-        <div class="proj-top"><h4>Software Testing &amp; Analysis (COSC 3P95)</h4></div>
+        </div></a>
+        <div class="proj-top"><h4><a href="software-testing.html">Software Testing &amp; Analysis (COSC 3P95)</a></h4></div>
         <div class="meta">2023 · Brock University · Python</div>
         <p>
           Coursework harness exploring automated testing techniques: random testing on QuickSort
           with invariant checking and log generation, plus a delta-debugging system that
-          recursively minimizes a failing input to isolate the smallest bug-reproducing case.
+          recursively minimizes a failing input to produce a smaller bug-reproducing example.
         </p>
         <p class="note">Custom coursework harness, framed around testing &amp; fault localization.</p>
         <div class="stack">
           <span>Python</span><span>Random testing</span><span>Delta debugging</span><span>Test oracles</span>
         </div>
-        <div class="proj-foot"><a href="https://github.com/maikeeb/Assignment-1-COSC-3P95" target="_blank" rel="noopener">GitHub ↗</a></div>
+        <div class="proj-foot"><a href="software-testing.html">Read the case study ↗</a><a href="https://github.com/maikeeb/Assignment-1-COSC-3P95" target="_blank" rel="noopener">GitHub ↗</a></div>
       </article>
 
       <!-- Sudoku -->
       <article class="proj" data-tags="algorithms">
-        <div class="thumb"><div class="cover cv-algo">
+        <a class="thumb" href="sudoku.html" aria-label="Explore Sudoku Board Validator"><div class="cover cv-algo">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M9 3v18M15 3v18M3 9h18M3 15h18"/></svg>
           <span class="clabel">JAVA · OOP</span>
-        </div></div>
-        <div class="proj-top"><h4>Sudoku Board Validator (Java)</h4></div>
+        </div></a>
+        <div class="proj-top"><h4><a href="sudoku.html">Sudoku Board Validator (Java)</a></h4></div>
         <div class="meta">2022 · Brock University · Java</div>
         <p>
           A Java Sudoku board model with row/column/subgrid constraint checks and a simple BasicIO
@@ -701,16 +693,16 @@
         <div class="stack">
           <span>Java</span><span>OOP</span><span>Constraint checks</span>
         </div>
-        <div class="proj-foot"><a href="https://github.com/maikeeb/Sudoku" target="_blank" rel="noopener">GitHub ↗</a></div>
+        <div class="proj-foot"><a href="sudoku.html">Read the case study ↗</a><a href="https://github.com/maikeeb/Sudoku" target="_blank" rel="noopener">GitHub ↗</a></div>
       </article>
 
       <!-- Maze -->
       <article class="proj" data-tags="algorithms">
-        <div class="thumb"><div class="cover cv-algo">
+        <a class="thumb" href="maze.html" aria-label="Explore Recursive Maze Walk"><div class="cover cv-algo">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M3 3h18v18H3z"/><path d="M7 3v10h4V7h6M3 11h4M11 21v-4h6V9M15 13h2"/></svg>
           <span class="clabel">JAVA · RECURSION · DFS</span>
-        </div></div>
-        <div class="proj-top"><h4>Recursive Maze Walk</h4></div>
+        </div></a>
+        <div class="proj-top"><h4><a href="maze.html">Recursive Maze Walk</a></h4></div>
         <div class="meta">2022 · Brock University · Java</div>
         <p>
           A recursive depth-first algorithm that navigates an ASCII maze loaded from a data file,
@@ -720,16 +712,16 @@
         <div class="stack">
           <span>Java</span><span>Recursion</span><span>DFS</span><span>2D arrays</span><span>File I/O</span>
         </div>
-        <div class="proj-foot"><span class="priv">Coursework</span></div>
+        <div class="proj-foot"><a href="maze.html">Read the case study ↗</a><span class="priv">Coursework</span></div>
       </article>
 
       <!-- Socket File Sending -->
       <article class="proj" data-tags="backend">
-        <div class="thumb"><div class="cover cv-backend">
+        <a class="thumb" href="tcp-transfer.html" aria-label="Explore TCP File Transfer Prototype"><div class="cover cv-backend">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="3" y="4" width="7" height="7" rx="1.5"/><rect x="14" y="13" width="7" height="7" rx="1.5"/><path d="M6.5 11.5v3.5H13M17.5 12.5V9H11"/></svg>
           <span class="clabel">PYTHON · SOCKETS</span>
-        </div></div>
-        <div class="proj-top"><h4>TCP File Transfer Prototype</h4></div>
+        </div></a>
+        <div class="proj-top"><h4><a href="tcp-transfer.html">TCP File Transfer Prototype</a></h4></div>
         <div class="meta">2022 · Python</div>
         <p>
           A client/server TCP file-transfer prototype that exchanges file metadata, streams binary
@@ -740,16 +732,16 @@
         <div class="stack">
           <span>Python</span><span>Sockets</span><span>Threading</span><span>tqdm</span><span>PyInstaller</span>
         </div>
-        <div class="proj-foot"><span class="priv">Local project</span></div>
+        <div class="proj-foot"><a href="tcp-transfer.html">Read the case study ↗</a><span class="priv">Local project</span></div>
       </article>
 
       <!-- AskingPackage -->
       <article class="proj" data-tags="backend">
-        <div class="thumb"><div class="cover cv-backend">
+        <a class="thumb" href="console-input.html" aria-label="Explore Python Console Input Library"><div class="cover cv-backend">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M8 6 3 12l5 6M16 6l5 6-5 6"/><path d="M13 4l-2 16"/></svg>
           <span class="clabel">PYTHON · LIBRARY</span>
-        </div></div>
-        <div class="proj-top"><h4>Python Console Input Library</h4></div>
+        </div></a>
+        <div class="proj-top"><h4><a href="console-input.html">Python Console Input Library</a></h4></div>
         <div class="meta">2020 · Python</div>
         <p>
           A reusable library that simplifies console input handling — validation, automatic error
@@ -759,17 +751,17 @@
         <div class="stack">
           <span>Python</span><span>API design</span><span>Validation</span><span>**kwargs</span>
         </div>
-        <div class="proj-foot"><a href="https://github.com/maikeeb/AskingPackage" target="_blank" rel="noopener">GitHub ↗</a></div>
+        <div class="proj-foot"><a href="console-input.html">Read the case study ↗</a><a href="https://github.com/maikeeb/AskingPackage" target="_blank" rel="noopener">GitHub ↗</a></div>
       </article>
 
       <!-- CS Fundamentals -->
       <article class="proj" data-tags="algorithms">
-        <div class="thumb"><div class="cover cv-backend">
+        <a class="thumb" href="languages-systems.html" aria-label="Explore Programming Languages &amp; Systems"><div class="cover cv-backend">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M8 6 3 12l5 6M16 6l5 6-5 6"/><path d="M13 4l-2 16"/></svg>
           <span class="clabel">PL THEORY · OS CONCEPTS</span>
-        </div></div>
-        <div class="proj-top"><h4>Programming Languages &amp; Systems (COSC 2P05 / 2P13)</h4></div>
-        <div class="meta">2023 · Brock University · 99 commits</div>
+        </div></a>
+        <div class="proj-top"><h4><a href="languages-systems.html">Programming Languages &amp; Systems (COSC 2P05 / 2P13)</a></h4></div>
+        <div class="meta">2023 · Brock University</div>
         <p>
           Two courses of CS fundamentals: language design, type checking, scope/binding, activation
           records, dynamic dispatch, and logic-programming foundations; plus computer systems —
@@ -779,7 +771,7 @@
         <div class="stack">
           <span>PL theory</span><span>OS concepts</span><span>Concurrency</span><span>Type systems</span>
         </div>
-        <div class="proj-foot"><a href="https://github.com/maikeeb/COSC-2p05---Programming-Languages" target="_blank" rel="noopener">GitHub ↗</a></div>
+        <div class="proj-foot"><a href="languages-systems.html">Read the case study ↗</a><a href="https://github.com/maikeeb/COSC-2p05---Programming-Languages" target="_blank" rel="noopener">GitHub ↗</a></div>
       </article>
 
     </div>
@@ -869,8 +861,6 @@
   </div>
 </footer>
 
-<!-- lightbox -->
-<div id="lb"><img id="lb-img" src="" alt="" /><div class="cap" id="lb-cap"></div></div>
 
 <script>
   document.getElementById('yr').textContent = new Date().getFullYear();
@@ -890,20 +880,6 @@
     });
   });
 
-  // lightbox for live screenshots
-  const lb = document.getElementById('lb');
-  const lbImg = document.getElementById('lb-img');
-  const lbCap = document.getElementById('lb-cap');
-  document.querySelectorAll('img.shot').forEach(img => {
-    img.addEventListener('click', () => {
-      lbImg.src = img.src;
-      lbImg.alt = img.alt;
-      lbCap.textContent = img.dataset.cap || '';
-      lb.classList.add('open');
-    });
-  });
-  lb.addEventListener('click', () => lb.classList.remove('open'));
-  document.addEventListener('keydown', e => { if (e.key === 'Escape') lb.classList.remove('open'); });
 </script>
 </body>
 </html>

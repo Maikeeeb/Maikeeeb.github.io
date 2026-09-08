@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Custom 2D Game Engine — Project case study | Charlotte Kerrigan</title>
+  <meta name="description" content="A 2D game and tile-map project exploring how input, movement, collision, animation, and rendering work together. Charlotte Kerrigan’s contribution, implementation, and evidence.">
+  <link rel="canonical" href="https://maikeeeb.github.io/sfml-engine.html">
+  <meta property="og:title" content="Custom 2D Game Engine — Charlotte Kerrigan">
+  <meta property="og:description" content="A 2D game and tile-map project exploring how input, movement, collision, animation, and rendering work together.">
+  <meta property="og:type" content="article">
+  <link rel="stylesheet" href="washproof.css">
+  <link rel="stylesheet" href="project-case-studies.css">
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+  <header class="site-header"><nav class="wrap nav" aria-label="Main navigation">
+    <a class="brand" href="index.html">Charlotte <span>Kerrigan</span></a>
+    <a class="back" href="index.html#projects">← All projects</a>
+  </nav></header>
+  <main class="wrap" id="main">
+    <section class="hero" aria-labelledby="title">
+      <div class="eyebrow">Selected work / 12 · Game systems · C++</div>
+      <div class="hero-grid"><div><div class="wordmark">Custom 2D Game Engine</div><h1 id="title">Understanding the systems beneath a small game.</h1></div>
+      <div class="hero-story"><p class="lead">A 2D game and tile-map project exploring how input, movement, collision, animation, and rendering work together.</p><div class="actions"><a class="button primary" href="#evidence">See the evidence ↓</a><a class="text-link" href="#engineering">Engineering details ↗</a></div></div></div>
+      <dl class="project-facts"><div><dt>My role</dt><dd>Personal project</dd></div><div><dt>Project year</dt><dd>2020</dd></div><div><dt>Evidence</dt><dd>Source walkthrough</dd></div><div><dt>Built with</dt><dd>C++ · SFML · ECS · Tile maps</dd></div></dl>
+    </section>
+    
+    <nav class="contents" aria-label="Case study sections"><a href="#context">Problem &amp; contribution</a><a href="#workflow">Workflow</a><a href="#evidence">Evidence</a><a href="#engineering">Engineering</a><a href="#status">Scope &amp; next steps</a></nav>
+    <section class="section split" id="context"><div><div class="eyebrow">The starting point</div><h2>Why build it?</h2><p>Many behaviors cooperate every frame. Separating them into systems makes their responsibilities and update order easier to reason about.</p></div><div class="prose"><div class="eyebrow">My contribution</div><h2>What I built.</h2><p>I built project-specific rendering, input, movement, AABB collision, animation, camera, and tile-map systems, plus tile-placement and map save/load interactions.</p><p class="attribution"><strong>Attribution.</strong> Uses a third-party ECS header. The engine systems and game behavior are project-authored; the ECS library itself is not my implementation.</p></div></section>
+    <section class="section" id="workflow"><div class="eyebrow">End to end</div><h2>How it works.</h2><ol class="workflow-list"><li><span class="step">1</span><div><h3>Describe entities</h3><p>Store the components needed by each game object.</p></div></li><li><span class="step">2</span><div><h3>Update systems</h3><p>Process input, movement, collisions, and animations.</p></div></li><li><span class="step">3</span><div><h3>Render and edit</h3><p>Draw the scene and place or persist tiles.</p></div></li></ol></section>
+    <section class="section" id="evidence"><div class="eyebrow">Source walkthrough</div><h2>Look at the work.</h2><p class="evidence-intro">Reviewed the original C++ systems and included demo build. The legacy executable did not produce a usable fresh capture in this environment, so this is a source walkthrough.</p></section>
+    <section class="section" id="engineering"><div class="eyebrow">For a closer technical review</div><h2>Decisions &amp; tradeoffs.</h2><p>Open each note for the implementation boundary, tradeoff, and next engineering question.</p><details><summary><span>01</span>An ECS separates data from iteration</summary><div class="detail-body"><p>Systems operate on entities with the required components rather than placing every behavior in one hierarchy. Dependencies between systems become update-order contracts that need documentation and tests.</p></div></details><details><summary><span>02</span>Collision has frame-boundary limits</summary><div class="detail-body"><p>Axis-aligned boxes provide straightforward overlap checks. Fast movement, corners, and large frame times challenge discrete collision handling. Fixed-step simulation and swept tests are possible extensions, not features claimed here.</p></div></details><div class="source-pointers"><span class="eyebrow">Source entry points</span><p>Game_HK project · engine systems · tile-map editor</p></div></section>
+    <section class="section split" id="status"><div><div class="eyebrow">Scope &amp; next steps</div><h2>What this demonstrates.</h2><p>Historical learning project. Current compiler/runtime compatibility and playable-demo behavior were not freshly verified. No gameplay image or video has been fabricated.</p></div><div class="prose"><h3>Explore the implementation</h3><a class="button primary" href="https://github.com/maikeeb/GameEngine_HK" target="_blank" rel="noopener">Explore the source ↗</a><p class="small-note source-note">Screenshots and output are evidence of the stated demonstration, not a claim that every feature or failure mode was tested.</p></div></section>
+    <section class="closing"><div><div class="eyebrow">Let’s talk engineering</div><h2>Interested in the thinking behind it?</h2><p>I’m happy to discuss the implementation, its limitations, and how I would develop it further.</p></div><div class="closing-actions"><a class="button primary" href="mailto:ckerrigan789@gmail.com">Get in touch ↗</a><a class="text-link" href="index.html#projects">Back to all projects</a></div></section>
+    <nav class="project-pagination" aria-label="More projects"><a href="astar.html">← Previous project</a><a href="endless-runner.html">Next project →</a></nav>
+  </main>
+  <footer class="wrap footer"><span>Charlotte Kerrigan · Software developer</span><span>Project case study · Custom 2D Game Engine</span></footer>
+</body>
+</html>

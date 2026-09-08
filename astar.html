@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>A* Pathfinding Benchmark — Project case study | Charlotte Kerrigan</title>
+  <meta name="description" content="A Java experiment in grid pathfinding, heuristic weighting, and repeated-run benchmarking. Charlotte Kerrigan’s contribution, implementation, and evidence.">
+  <link rel="canonical" href="https://maikeeeb.github.io/astar.html">
+  <meta property="og:title" content="A* Pathfinding Benchmark — Charlotte Kerrigan">
+  <meta property="og:description" content="A Java experiment in grid pathfinding, heuristic weighting, and repeated-run benchmarking.">
+  <meta property="og:type" content="article">
+  <link rel="stylesheet" href="washproof.css">
+  <link rel="stylesheet" href="project-case-studies.css">
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+  <header class="site-header"><nav class="wrap nav" aria-label="Main navigation">
+    <a class="brand" href="index.html">Charlotte <span>Kerrigan</span></a>
+    <a class="back" href="index.html#projects">← All projects</a>
+  </nav></header>
+  <main class="wrap" id="main">
+    <section class="hero" aria-labelledby="title">
+      <div class="eyebrow">Selected work / 11 · Algorithms · Java</div>
+      <div class="hero-grid"><div><div class="wordmark">A* Pathfinding Benchmark</div><h1 id="title">Exploring how search choices shape a route.</h1></div>
+      <div class="hero-story"><p class="lead">A Java experiment in grid pathfinding, heuristic weighting, and repeated-run benchmarking.</p><div class="actions"><a class="button primary" href="#evidence">See the evidence ↓</a><a class="text-link" href="#engineering">Engineering details ↗</a></div></div></div>
+      <dl class="project-facts"><div><dt>My role</dt><dd>Personal learning project</dd></div><div><dt>Project year</dt><dd>2023</dd></div><div><dt>Evidence</dt><dd>Runtime evidence</dd></div><div><dt>Built with</dt><dd>Java · PriorityQueue · Grid search</dd></div></dl>
+    </section>
+    
+    <nav class="contents" aria-label="Case study sections"><a href="#context">Problem &amp; contribution</a><a href="#workflow">Workflow</a><a href="#evidence">Evidence</a><a href="#engineering">Engineering</a><a href="#status">Scope &amp; next steps</a></nav>
+    <section class="section split" id="context"><div><div class="eyebrow">The starting point</div><h2>Why build it?</h2><p>Search must choose which move to explore next. A grid with randomly placed walls makes the cost of those choices visible.</p></div><div class="prose"><div class="eyebrow">My contribution</div><h2>What I built.</h2><p>I implemented a grid board, predecessor links, priority-queue frontier management, weighted path-cost and distance scoring, route reconstruction, and benchmark loops.</p></div></section>
+    <section class="section" id="workflow"><div class="eyebrow">End to end</div><h2>How it works.</h2><ol class="workflow-list"><li><span class="step">1</span><div><h3>Generate a board</h3><p>Place start, end, and walls on a grid.</p></div></li><li><span class="step">2</span><div><h3>Explore the frontier</h3><p>Expand traversable neighbors and prioritize them with a weighted heuristic.</p></div></li><li><span class="step">3</span><div><h3>Reconstruct and measure</h3><p>Follow predecessor links after reaching the target and record timing and success.</p></div></li></ol></section>
+    <section class="section" id="evidence"><div class="eyebrow">Runtime evidence</div><h2>Look at the work.</h2><p class="evidence-intro">Compiled the original Board, Node, and A_Star classes and ran one 50×50 board at wall probability 0.30. The target was reached. The original 100,000-run loop was not used as a portfolio performance claim.</p><div class="output-panel"><div class="output-label">Recorded program output · local demonstration</div><pre tabindex="0" aria-label="Recorded output"><code>Board: 50 x 50
+Wall probability: 0.30
+Route found: true
+Legend: S start, E end, # wall, * explored, k route</code></pre></div></section>
+    <section class="section" id="engineering"><div class="eyebrow">For a closer technical review</div><h2>Decisions &amp; tradeoffs.</h2><p>Open each note for the implementation boundary, tradeoff, and next engineering question.</p><details><summary><span>01</span>Heuristics change the search strategy</summary><div class="detail-body"><p>The score combines accumulated cost with Euclidean distance, then casts to an integer. The weights change exploration, and quantization creates ties. Both matter when interpreting timing comparisons.</p></div></details><details><summary><span>02</span>A found route does not prove optimality</summary><div class="detail-body"><p>The implementation marks positions when enqueuing them and does not reopen better paths. It is a weighted-search experiment, not a guarantee of shortest paths. A small-grid BFS oracle would provide a stronger correctness comparison.</p></div></details><div class="source-pointers"><span class="eyebrow">Source entry points</span><p>src/A_Star.java · src/Board.java · src/Node.java</p></div></section>
+    <section class="section split" id="status"><div><div class="eyebrow">Scope &amp; next steps</div><h2>What this demonstrates.</h2><p>The old public URL is unavailable, so no broken source link is included. Timings depend on the machine, and one successful route is not a correctness proof.</p></div><div class="prose"><h3>Explore the implementation</h3><p class="small-note">Source is local, private, or archived; no public repository link is available.</p><p class="small-note source-note">Screenshots and output are evidence of the stated demonstration, not a claim that every feature or failure mode was tested.</p></div></section>
+    <section class="closing"><div><div class="eyebrow">Let’s talk engineering</div><h2>Interested in the thinking behind it?</h2><p>I’m happy to discuss the implementation, its limitations, and how I would develop it further.</p></div><div class="closing-actions"><a class="button primary" href="mailto:ckerrigan789@gmail.com">Get in touch ↗</a><a class="text-link" href="index.html#projects">Back to all projects</a></div></section>
+    <nav class="project-pagination" aria-label="More projects"><a href="moviepy-editor.html">← Previous project</a><a href="sfml-engine.html">Next project →</a></nav>
+  </main>
+  <footer class="wrap footer"><span>Charlotte Kerrigan · Software developer</span><span>Project case study · A* Pathfinding Benchmark</span></footer>
+</body>
+</html>

@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>TwitchClipper — Project case study | Charlotte Kerrigan</title>
+  <meta name="description" content="A media-processing pipeline that uses bursts of chat activity to identify moments worth reviewing in a Twitch recording. Charlotte Kerrigan’s contribution, implementation, and evidence.">
+  <link rel="canonical" href="https://maikeeeb.github.io/twitchclipper.html">
+  <meta property="og:title" content="TwitchClipper — Charlotte Kerrigan">
+  <meta property="og:description" content="A media-processing pipeline that uses bursts of chat activity to identify moments worth reviewing in a Twitch recording.">
+  <meta property="og:type" content="article">
+  <link rel="stylesheet" href="washproof.css">
+  <link rel="stylesheet" href="project-case-studies.css">
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+  <header class="site-header"><nav class="wrap nav" aria-label="Main navigation">
+    <a class="brand" href="index.html">Charlotte <span>Kerrigan</span></a>
+    <a class="back" href="index.html#projects">← All projects</a>
+  </nav></header>
+  <main class="wrap" id="main">
+    <section class="hero" aria-labelledby="title">
+      <div class="eyebrow">Selected work / 03 · Backend · Media automation</div>
+      <div class="hero-grid"><div><div class="wordmark">TwitchClipper</div><h1 id="title">Finding candidate highlights in long VODs.</h1></div>
+      <div class="hero-story"><p class="lead">A media-processing pipeline that uses bursts of chat activity to identify moments worth reviewing in a Twitch recording.</p><div class="actions"><a class="button primary" href="#evidence">See the evidence ↓</a><a class="text-link" href="#engineering">Engineering details ↗</a></div></div></div>
+      <dl class="project-facts"><div><dt>My role</dt><dd>Personal project</dd></div><div><dt>Project year</dt><dd>2026</dd></div><div><dt>Evidence</dt><dd>Runtime evidence</dd></div><div><dt>Built with</dt><dd>Python · FastAPI · ffmpeg · SQLite · WPF</dd></div></dl>
+    </section>
+    
+    <nav class="contents" aria-label="Case study sections"><a href="#context">Problem &amp; contribution</a><a href="#workflow">Workflow</a><a href="#evidence">Evidence</a><a href="#engineering">Engineering</a><a href="#status">Scope &amp; next steps</a></nav>
+    <section class="section split" id="context"><div><div class="eyebrow">The starting point</div><h2>Why build it?</h2><p>Watching a long recording to find useful moments is slow. Chat timestamps provide a measurable signal that can narrow the search, while leaving the final editorial decision to a person.</p></div><div class="prose"><div class="eyebrow">My contribution</div><h2>What I built.</h2><p>I built a pipeline around chat parsing, time buckets, spike detection, candidate scoring, selection, and ffmpeg cutting and montage output. A FastAPI service, job queue, and worker expose the processing flow; an early .NET WPF frontend explores desktop access.</p></div></section>
+    <section class="section" id="workflow"><div class="eyebrow">End to end</div><h2>How it works.</h2><ol class="workflow-list"><li><span class="step">1</span><div><h3>Measure activity</h3><p>Group timestamped chat into fixed-width windows.</p></div></li><li><span class="step">2</span><div><h3>Select candidates</h3><p>Find spikes, add context, score segments, and apply selection limits.</p></div></li><li><span class="step">3</span><div><h3>Produce artifacts</h3><p>Process the VOD, cut selected intervals, and assemble a montage with metadata.</p></div></li></ol></section>
+    <section class="section" id="evidence"><div class="eyebrow">Runtime evidence</div><h2>Look at the work.</h2><p class="evidence-intro">Executed the original chat-spike functions with eight fictional timestamps. The output shows the selected window and rejection of a zero-width bucket. This is a component demonstration, not an end-to-end Twitch download.</p><div class="output-panel"><div class="output-label">Recorded program output · local demonstration</div><pre tabindex="0" aria-label="Recorded output"><code>30-second buckets: [(0, 2), (30, 5), (60, 1)]
+Spikes (minimum 4 messages): [(30, 5)]
+Invalid window rejected: bucket_seconds must be &gt; 0</code></pre></div></section>
+    <section class="section" id="engineering"><div class="eyebrow">For a closer technical review</div><h2>Decisions &amp; tradeoffs.</h2><p>Open each note for the implementation boundary, tradeoff, and next engineering question.</p><details><summary><span>01</span>Keep scoring independent of I/O</summary><div class="detail-body"><p>The chat-spike module computes buckets and threshold matches in memory. Typed models reject invalid timestamps and segment ranges before downstream processing. This makes selection logic testable without downloading a VOD or launching ffmpeg.</p></div></details><details><summary><span>02</span>Jobs make long work observable</summary><div class="detail-body"><p>The service queues work rather than rendering inside the request. In-memory and SQLite-backed storage serve different persistence needs. Process crashes, partial files, and retry safety become central when promoting a local tool into a service.</p></div></details><div class="source-pointers"><span class="eyebrow">Source entry points</span><p>backend/chat_spikes.py · backend/vod_models.py · backend/worker.py</p></div></section>
+    <section class="section split" id="status"><div><div class="eyebrow">Scope &amp; next steps</div><h2>What this demonstrates.</h2><p>Chat spikes can reflect spam, confusion, or delayed reactions. They are a ranking signal, not a promise of good highlights. Downloads, third-party changes, and desktop integration need separate operational validation.</p></div><div class="prose"><h3>Explore the implementation</h3><a class="button primary" href="https://github.com/Maikeeeb/TwitchClipper" target="_blank" rel="noopener">Explore the source ↗</a><p class="small-note source-note">Screenshots and output are evidence of the stated demonstration, not a claim that every feature or failure mode was tested.</p></div></section>
+    <section class="closing"><div><div class="eyebrow">Let’s talk engineering</div><h2>Interested in the thinking behind it?</h2><p>I’m happy to discuss the implementation, its limitations, and how I would develop it further.</p></div><div class="closing-actions"><a class="button primary" href="mailto:ckerrigan789@gmail.com">Get in touch ↗</a><a class="text-link" href="index.html#projects">Back to all projects</a></div></section>
+    <nav class="project-pagination" aria-label="More projects"><a href="token-trail.html">← Previous project</a><a href="tft-optimizer.html">Next project →</a></nav>
+  </main>
+  <footer class="wrap footer"><span>Charlotte Kerrigan · Software developer</span><span>Project case study · TwitchClipper</span></footer>
+</body>
+</html>

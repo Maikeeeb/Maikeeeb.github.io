@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Automatic Twitch Compilation — Project case study | Charlotte Kerrigan</title>
+  <meta name="description" content="A local pipeline connecting clip discovery and downloading with automatic assembly, transitions, and timestamp output. Charlotte Kerrigan’s contribution, implementation, and evidence.">
+  <link rel="canonical" href="https://maikeeeb.github.io/twitch-compilation.html">
+  <meta property="og:title" content="Automatic Twitch Compilation — Charlotte Kerrigan">
+  <meta property="og:description" content="A local pipeline connecting clip discovery and downloading with automatic assembly, transitions, and timestamp output.">
+  <meta property="og:type" content="article">
+  <link rel="stylesheet" href="washproof.css">
+  <link rel="stylesheet" href="project-case-studies.css">
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+  <header class="site-header"><nav class="wrap nav" aria-label="Main navigation">
+    <a class="brand" href="index.html">Charlotte <span>Kerrigan</span></a>
+    <a class="back" href="index.html#projects">← All projects</a>
+  </nav></header>
+  <main class="wrap" id="main">
+    <section class="hero" aria-labelledby="title">
+      <div class="eyebrow">Selected work / 08 · Media automation</div>
+      <div class="hero-grid"><div><div class="wordmark">Automatic Twitch Compilation</div><h1 id="title">From individual clips to one assembled video.</h1></div>
+      <div class="hero-story"><p class="lead">A local pipeline connecting clip discovery and downloading with automatic assembly, transitions, and timestamp output.</p><div class="actions"><a class="button primary" href="#evidence">See the evidence ↓</a><a class="text-link" href="#engineering">Engineering details ↗</a></div></div></div>
+      <dl class="project-facts"><div><dt>My role</dt><dd>Personal project</dd></div><div><dt>Project year</dt><dd>2020</dd></div><div><dt>Evidence</dt><dd>Runtime evidence</dd></div><div><dt>Built with</dt><dd>Python · Selenium · MoviePy · Threading</dd></div></dl>
+    </section>
+    
+    <nav class="contents" aria-label="Case study sections"><a href="#context">Problem &amp; contribution</a><a href="#workflow">Workflow</a><a href="#evidence">Evidence</a><a href="#engineering">Engineering</a><a href="#status">Scope &amp; next steps</a></nav>
+    <section class="section split" id="context"><div><div class="eyebrow">The starting point</div><h2>Why build it?</h2><p>Compiling short clips involves repetitive steps: gathering files, preserving source information, ordering clips, and rendering a single output.</p></div><div class="prose"><div class="eyebrow">My contribution</div><h2>What I built.</h2><p>I built a Python pipeline around Selenium collection, threaded downloads, MoviePy composition, transitions, duration limits, and timestamp/link files. It extended my earlier desktop media-editor work.</p></div></section>
+    <section class="section" id="workflow"><div class="eyebrow">End to end</div><h2>How it works.</h2><ol class="workflow-list"><li><span class="step">1</span><div><h3>Collect and organize</h3><p>Gather clip references and download files into the input directory.</p></div></li><li><span class="step">2</span><div><h3>Compose a timeline</h3><p>Order clips, position them in time, and apply slide transitions.</p></div></li><li><span class="step">3</span><div><h3>Export artifacts</h3><p>Render the compilation and write timestamp and source-link information.</p></div></li></ol></section>
+    <section class="section" id="evidence"><div class="eyebrow">Runtime evidence</div><h2>Look at the work.</h2><p class="evidence-intro">Executed the original compile function in an isolated folder using two generated video test patterns. The video is its actual two-second output, not Twitch footage or a recording of an interface.</p><figure class="video-figure demo-video">
+          <video controls playsinline preload="none" width="1440" height="900" aria-label="Silent Automatic Twitch Compilation demonstration" aria-describedby="video-caption">
+            <source src="media/twitch-compilation-export.mp4" type="video/mp4">
+            <a href="media/twitch-compilation-export.mp4">Download the demonstration video.</a>
+          </video><figcaption id="video-caption">Actual compiler output with generated test patterns. Two seconds; silent. No third-party footage.</figcaption></figure></section>
+    <section class="section" id="engineering"><div class="eyebrow">For a closer technical review</div><h2>Decisions &amp; tradeoffs.</h2><p>Open each note for the implementation boundary, tradeoff, and next engineering question.</p><details><summary><span>01</span>Composition makes timing explicit</summary><div class="detail-body"><p>The compiler uses clip durations and start offsets to build a CompositeVideoClip. Overlap and transition duration interact: short inputs expose timing edge cases. A revision should calculate one explicit timeline and validate every resulting interval.</p></div></details><details><summary><span>02</span>Collection is a separate failure boundary</summary><div class="detail-body"><p>Scraping and downloading depend on website structure and network availability. Local composition can be tested with known media, while collection needs retry limits, clear failure reports, and source-rights review.</p></div></details><div class="source-pointers"><span class="eyebrow">Source entry points</span><p>scripts/oneVideo.py · scripts/clips.py · scripts/transition.py</p></div></section>
+    <section class="section split" id="status"><div><div class="eyebrow">Scope &amp; next steps</div><h2>What this demonstrates.</h2><p>Historical local prototype. Short-fixture timing is not representative of a full montage. Scraping and uploading were not exercised, and current Twitch compatibility has not been established.</p></div><div class="prose"><h3>Explore the implementation</h3><a class="button primary" href="https://github.com/maikeeb/YoutubeCompilation" target="_blank" rel="noopener">Explore the source ↗</a><p class="small-note source-note">Screenshots and output are evidence of the stated demonstration, not a claim that every feature or failure mode was tested.</p></div></section>
+    <section class="closing"><div><div class="eyebrow">Let’s talk engineering</div><h2>Interested in the thinking behind it?</h2><p>I’m happy to discuss the implementation, its limitations, and how I would develop it further.</p></div><div class="closing-actions"><a class="button primary" href="mailto:ckerrigan789@gmail.com">Get in touch ↗</a><a class="text-link" href="index.html#projects">Back to all projects</a></div></section>
+    <nav class="project-pagination" aria-label="More projects"><a href="relicworks.html">← Previous project</a><a href="reddit-video.html">Next project →</a></nav>
+  </main>
+  <footer class="wrap footer"><span>Charlotte Kerrigan · Software developer</span><span>Project case study · Automatic Twitch Compilation</span></footer>
+</body>
+</html>

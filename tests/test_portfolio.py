@@ -10,6 +10,7 @@
 from html.parser import HTMLParser
 from pathlib import Path
 import unittest
+import re
 from urllib.parse import unquote, urlsplit
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -27,6 +28,87 @@ class Page(HTMLParser):
 
 
 class PortfolioTests(unittest.TestCase):
+    def test_every_project_has_three_links_to_its_own_case_study(self):
+        # Why: every image, title, and CTA must navigate, including cards with illustrated covers.
+        home = (ROOT / "index.html").read_text(encoding="utf-8")
+        cards = re.findall(r'<article class="proj(?: featured)?".*?</article>', home, re.S)
+        self.assertEqual(19, len(cards))
+        destinations = []
+        for card in cards:
+            links = re.findall(r'href="([a-z-]+\.html)"', card)
+            with self.subTest(card=card[:70]):
+                self.assertEqual(3, len(links))
+                self.assertEqual(1, len(set(links)))
+                self.assertTrue((ROOT / links[0]).is_file())
+                self.assertNotIn('class="shot"', card)
+                self.assertRegex(card, r'<a class="thumb"[^>]+>')
+                destinations.append(links[0])
+        self.assertEqual(19, len(set(destinations)))
+
+    def test_all_case_study_assets_fragments_and_direct_entry_links_resolve(self):
+        # Why: catches missing assets, broken fragments, empty URLs, and duplicate section IDs.
+        for path in ROOT.glob("*.html"):
+            page = Page(path)
+            ids = [attrs["id"] for _, attrs in page.elements if "id" in attrs]
+            self.assertEqual(len(ids), len(set(ids)), path.name)
+            for tag, attrs in page.elements:
+                for attribute in ("href", "src", "poster"):
+                    if attribute not in attrs:
+                        continue
+                    value = attrs[attribute]
+                    with self.subTest(page=path.name, link=value):
+                        self.assertTrue(value.strip())
+                        url = urlsplit(value)
+                        if url.scheme or url.netloc:
+                            continue
+                        target = ROOT / (unquote(url.path) or path.name)
+                        self.assertTrue(target.is_file(), value)
+                        if url.fragment:
+                            self.assertIn(
+                                url.fragment, [a.get("id") for _, a in Page(target).elements]
+                            )
+
+    def test_all_videos_have_native_controls_and_download_fallbacks(self):
+        # Why: missing JS/codecs and mobile playback must not remove access to the demo media.
+        count = 0
+        for path in ROOT.glob("*.html"):
+            page = Page(path)
+            ids = [a.get("id") for _, a in page.elements]
+            for tag, attrs in page.elements:
+                if tag == "video":
+                    count += 1
+                    with self.subTest(page=path.name):
+                        self.assertIn("controls", attrs)
+                        self.assertIn("playsinline", attrs)
+                        self.assertNotIn("autoplay", attrs)
+                        self.assertEqual("none", attrs.get("preload"))
+                        self.assertIn("Silent", attrs.get("aria-label", ""))
+                        self.assertIn(attrs.get("aria-describedby"), ids)
+                if tag == "source" and attrs.get("type") == "video/mp4":
+                    media = ROOT / attrs["src"]
+                    self.assertEqual(b"ftyp", media.read_bytes()[4:8])
+                    self.assertIn(f'href="{attrs["src"]}"', page.text)
+        self.assertEqual(7, count)
+
+    def test_attribution_and_evidence_limits_survive_content_edits(self):
+        # Why: prevents source reviews, team work, and generated inputs becoming inflated claims.
+        required = {
+            "token-trail.html": ["Teammates built", "fictional", "not detection accuracy"],
+            "tft-optimizer.html": ["bundled TFT16 data", "not current-patch"],
+            "relicworks.html": ["not a shipped game", "time-advance controls"],
+            "moviepy-editor.html": ["generated test clips", "not UI interaction"],
+            "twitch-compilation.html": ["generated video test patterns", "Scraping and uploading"],
+            "sfml-engine.html": ["third-party ECS", "source walkthrough"],
+            "endless-runner.html": ["2017.4.36f1", "unavailable"],
+            "maze.html": ["Archive note only", "source and execution"],
+            "languages-systems.html": ["coursework overview", "instructor content"],
+        }
+        for name, disclosures in required.items():
+            text = (ROOT / name).read_text(encoding="utf-8")
+            for disclosure in disclosures:
+                with self.subTest(page=name, disclosure=disclosure):
+                    self.assertIn(disclosure, text)
+
     def test_washproof_entry_points_open_dedicated_case_study(self):
         # Why: an image lightbox must not swallow navigation to the requested project page.
         home = Page(ROOT / "index.html")

@@ -1,21 +1,23 @@
 # Charlotte Kerrigan — Portfolio
 
-A static portfolio (no build step or runtime dependencies) with a dedicated WashProof case study.
-The homepage's CSS, project filter, and click-to-zoom lightbox live inside `index.html`.
+A static portfolio with 19 dedicated project pages, no build step, and no runtime dependencies.
+Every project card's image, title, and case-study link opens its own page. The homepage's
+CSS and project filter live inside `index.html`.
 
-**To host:** keep `index.html`, `washproof.html`, `washproof.css`, `images/`, and `media/` together.
-The WashProof card's image, title, and link open `washproof.html` in the same tab.
+**To host:** keep all root HTML/CSS files, `images/`, and `media/` together. The existing
+GitHub Pages site serves the root of `main` at <https://maikeeeb.github.io/>.
 
 ## Project visuals
-Four cards show **real screenshots of the actual running app** (marked "● Live screenshot",
-click to enlarge): Token Trail, TFT Comp Optimizer, Rust Belt Relicworks, and the
-MoviePy Video Editor. WashProof links to a case study with screenshots and video from an isolated
-Docker demo using fictional records and withheld client identities. See
+WashProof, Token Trail, TFT Comp Optimizer, and Rust Belt Relicworks show actual application
+captures. MoviePy includes an existing desktop capture and a freshly executed export.
+Seven videos cover real interactions or clearly labeled output from original media-processing
+code. Test-pattern inputs are disclosed; no third-party footage was used for export demos.
+WashProof uses an isolated Docker demo with fictional records and withheld client identities. See
 [`docs/washproof-case-study.md`](docs/washproof-case-study.md) for attribution and media privacy rules.
-The remaining cards (CLI/agent tools, older Java/C++/Unity projects that
-couldn't be easily run) use themed cover art. To add a real screenshot to any of those later,
-drop a PNG into `images/` and swap its card's `<div class="thumb"><div class="cover …">…</div></div>`
-for `<div class="thumb"><img class="shot" src="images/yourfile.png" alt="…" loading="lazy" data-cap="caption"></div>`.
+CLI projects show recorded program output. Legacy projects and course notes explicitly identify
+source-only or unavailable evidence. The themed card icons are navigation artwork, not screenshots.
+Case-study images link to their original full-size files. Keep media captions, contribution credit,
+and prototype limitations when updating content. See [verification and evidence notes](docs/project-case-studies.md).
 
 ## View it locally
 Double-click `index.html`. It opens in your browser.

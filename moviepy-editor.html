@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>MoviePy Video Editor — Project case study | Charlotte Kerrigan</title>
+  <meta name="description" content="A desktop-style video editor with clip import, timeline controls, effects, and video export. Charlotte Kerrigan’s contribution, implementation, and evidence.">
+  <link rel="canonical" href="https://maikeeeb.github.io/moviepy-editor.html">
+  <meta property="og:title" content="MoviePy Video Editor — Charlotte Kerrigan">
+  <meta property="og:description" content="A desktop-style video editor with clip import, timeline controls, effects, and video export.">
+  <meta property="og:type" content="article">
+  <link rel="stylesheet" href="washproof.css">
+  <link rel="stylesheet" href="project-case-studies.css">
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+  <header class="site-header"><nav class="wrap nav" aria-label="Main navigation">
+    <a class="brand" href="index.html">Charlotte <span>Kerrigan</span></a>
+    <a class="back" href="index.html#projects">← All projects</a>
+  </nav></header>
+  <main class="wrap" id="main">
+    <section class="hero" aria-labelledby="title">
+      <div class="eyebrow">Selected work / 10 · Desktop · Media tools</div>
+      <div class="hero-grid"><div><div class="wordmark">MoviePy Video Editor</div><h1 id="title">An editing timeline around a Python media engine.</h1></div>
+      <div class="hero-story"><p class="lead">A desktop-style video editor with clip import, timeline controls, effects, and video export.</p><div class="actions"><a class="button primary" href="#evidence">See the evidence ↓</a><a class="text-link" href="#engineering">Engineering details ↗</a></div></div></div>
+      <dl class="project-facts"><div><dt>My role</dt><dd>Personal project</dd></div><div><dt>Project year</dt><dd>2020</dd></div><div><dt>Evidence</dt><dd>Runtime evidence</dd></div><div><dt>Built with</dt><dd>Python · PyGame · pygame_gui · MoviePy</dd></div></dl>
+    </section>
+    <figure class="product-figure">
+      <a href="images/moviepy-editor.png" aria-label="Open full-size MoviePy Video Editor screenshot"><img src="images/moviepy-editor.png" width="816" height="639" loading="lazy" alt="MoviePy Video Editor — actual application screenshot showing import, export, and the clip timeline. Existing portfolio capture."></a>
+      <figcaption>import, export, and the clip timeline. Existing portfolio capture. Select the image to view full size.</figcaption>
+    </figure>
+    <nav class="contents" aria-label="Case study sections"><a href="#context">Problem &amp; contribution</a><a href="#workflow">Workflow</a><a href="#evidence">Evidence</a><a href="#engineering">Engineering</a><a href="#status">Scope &amp; next steps</a></nav>
+    <section class="section split" id="context"><div><div class="eyebrow">The starting point</div><h2>Why build it?</h2><p>Media libraries provide rendering primitives, but an editor needs interaction: managing clips, ordering them, and starting a long render without freezing the interface.</p></div><div class="prose"><div class="eyebrow">My contribution</div><h2>What I built.</h2><p>I built a PyGame/pygame_gui interface with import/export controls, timeline operations, fades, text overlays, and a separate rendering thread. It became a foundation for later video automation.</p></div></section>
+    <section class="section" id="workflow"><div class="eyebrow">End to end</div><h2>How it works.</h2><ol class="workflow-list"><li><span class="step">1</span><div><h3>Load clips</h3><p>Import media into clip objects and place them on a timeline.</p></div></li><li><span class="step">2</span><div><h3>Build the edit</h3><p>Reorder clips and apply supported effects.</p></div></li><li><span class="step">3</span><div><h3>Render the sequence</h3><p>Compose the clip outputs and export through MoviePy.</p></div></li></ol></section>
+    <section class="section" id="evidence"><div class="eyebrow">Runtime evidence</div><h2>Look at the work.</h2><p class="evidence-intro">The screenshot is an existing capture of the actual desktop UI. For this case study, the original Clip and export functions rendered two generated test clips with fades in an isolated folder. The video is that export, not UI interaction.</p><figure class="video-figure demo-video">
+          <video controls playsinline preload="none" width="1440" height="900" aria-label="Silent MoviePy Video Editor demonstration" aria-describedby="video-caption">
+            <source src="media/moviepy-export.mp4" type="video/mp4">
+            <a href="media/moviepy-export.mp4">Download the demonstration video.</a>
+          </video><figcaption id="video-caption">Actual original-code export using generated test patterns and fades. Four seconds; silent.</figcaption></figure></section>
+    <section class="section" id="engineering"><div class="eyebrow">For a closer technical review</div><h2>Decisions &amp; tradeoffs.</h2><p>Open each note for the implementation boundary, tradeoff, and next engineering question.</p><details><summary><span>01</span>Clip objects separate edits from UI events</summary><div class="detail-body"><p>The Clip class holds source media and composited elements. Its render method supplies either the source or a composite to the exporter. More complex editing would benefit from an immutable timeline model.</p></div></details><details><summary><span>02</span>Background rendering is only a first step</summary><div class="detail-body"><p>Threading keeps encoding off the event loop, but cancellation, shared state, progress, and error reporting still need design. The broad encoder fallback can obscure a failure’s original cause and should become an explicit export result.</p></div></details><div class="source-pointers"><span class="eyebrow">Source entry points</span><p>scripts/main.py · scripts/ClipClass.py · scripts/timeline.py · scripts/export.py</p></div></section>
+    <section class="section split" id="status"><div><div class="eyebrow">Scope &amp; next steps</div><h2>What this demonstrates.</h2><p>Historical editor prototype. The fresh export verifies the media path; new desktop interaction recording was unavailable during capture. Undo, cancellation, and malformed-media handling remain extension points.</p></div><div class="prose"><h3>Explore the implementation</h3><a class="button primary" href="https://github.com/Maikeeeb/Moviepy-Video-Editor" target="_blank" rel="noopener">Explore the source ↗</a><p class="small-note source-note">Screenshots and output are evidence of the stated demonstration, not a claim that every feature or failure mode was tested.</p></div></section>
+    <section class="closing"><div><div class="eyebrow">Let’s talk engineering</div><h2>Interested in the thinking behind it?</h2><p>I’m happy to discuss the implementation, its limitations, and how I would develop it further.</p></div><div class="closing-actions"><a class="button primary" href="mailto:ckerrigan789@gmail.com">Get in touch ↗</a><a class="text-link" href="index.html#projects">Back to all projects</a></div></section>
+    <nav class="project-pagination" aria-label="More projects"><a href="reddit-video.html">← Previous project</a><a href="astar.html">Next project →</a></nav>
+  </main>
+  <footer class="wrap footer"><span>Charlotte Kerrigan · Software developer</span><span>Project case study · MoviePy Video Editor</span></footer>
+</body>
+</html>

@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sudoku Board Validator — Project case study | Charlotte Kerrigan</title>
+  <meta name="description" content="A Java model that checks row, column, and subgrid constraints before accepting a move. Charlotte Kerrigan’s contribution, implementation, and evidence.">
+  <link rel="canonical" href="https://maikeeeb.github.io/sudoku.html">
+  <meta property="og:title" content="Sudoku Board Validator — Charlotte Kerrigan">
+  <meta property="og:description" content="A Java model that checks row, column, and subgrid constraints before accepting a move.">
+  <meta property="og:type" content="article">
+  <link rel="stylesheet" href="washproof.css">
+  <link rel="stylesheet" href="project-case-studies.css">
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+  <header class="site-header"><nav class="wrap nav" aria-label="Main navigation">
+    <a class="brand" href="index.html">Charlotte <span>Kerrigan</span></a>
+    <a class="back" href="index.html#projects">← All projects</a>
+  </nav></header>
+  <main class="wrap" id="main">
+    <section class="hero" aria-labelledby="title">
+      <div class="eyebrow">Selected work / 15 · Coursework · Java</div>
+      <div class="hero-grid"><div><div class="wordmark">Sudoku Board Validator</div><h1 id="title">Keeping invalid moves out of a board model.</h1></div>
+      <div class="hero-story"><p class="lead">A Java model that checks row, column, and subgrid constraints before accepting a move.</p><div class="actions"><a class="button primary" href="#evidence">See the evidence ↓</a><a class="text-link" href="#engineering">Engineering details ↗</a></div></div></div>
+      <dl class="project-facts"><div><dt>My role</dt><dd>Brock University coursework</dd></div><div><dt>Project year</dt><dd>2022</dd></div><div><dt>Evidence</dt><dd>Runtime evidence</dd></div><div><dt>Built with</dt><dd>Java · OOP · Constraint validation</dd></div></dl>
+    </section>
+    
+    <nav class="contents" aria-label="Case study sections"><a href="#context">Problem &amp; contribution</a><a href="#workflow">Workflow</a><a href="#evidence">Evidence</a><a href="#engineering">Engineering</a><a href="#status">Scope &amp; next steps</a></nav>
+    <section class="section split" id="context"><div><div class="eyebrow">The starting point</div><h2>Why build it?</h2><p>An interface should not be the only place that decides whether a value is allowed. A board model makes the rules reusable and independently testable.</p></div><div class="prose"><div class="eyebrow">My contribution</div><h2>What I built.</h2><p>I built a Sudoku interface and implementation with row, column, and 3×3-cell checks, guarded updates, and a BasicIO form for entering moves and refreshing the board.</p></div></section>
+    <section class="section" id="workflow"><div class="eyebrow">End to end</div><h2>How it works.</h2><ol class="workflow-list"><li><span class="step">1</span><div><h3>Represent the grid</h3><p>Store values in a 9×9 integer array.</p></div></li><li><span class="step">2</span><div><h3>Check constraints</h3><p>Look for the proposed value in its row, column, and subgrid.</p></div></li><li><span class="step">3</span><div><h3>Apply an allowed move</h3><p>Update the cell only when the checks permit it.</p></div></li></ol></section>
+    <section class="section" id="evidence"><div class="eyebrow">Runtime evidence</div><h2>Look at the work.</h2><p class="evidence-intro">Compiled and ran the original Java model. The demo places a value, rejects duplicates in each region, accepts a separate region, and confirms a rejected update leaves the target empty.</p><div class="output-panel"><div class="output-label">Recorded program output · local demonstration</div><pre tabindex="0" aria-label="Recorded output"><code>Placed 5 at (0,0): 5
+Same column, 5 allowed: false
+Same row, 5 allowed: false
+Same box, 5 allowed: false
+Separate box, 5 allowed: true
+Rejected update leaves cell: 0</code></pre></div></section>
+    <section class="section" id="engineering"><div class="eyebrow">For a closer technical review</div><h2>Decisions &amp; tradeoffs.</h2><p>Open each note for the implementation boundary, tradeoff, and next engineering question.</p><details><summary><span>01</span>The model owns the move constraint</summary><div class="detail-body"><p>isAllowed combines row, column, and cell checks; update calls it before assignment. Coordinate and value-range validation still need to be added at the boundary.</p></div></details><details><summary><span>02</span>Encapsulation affects correctness</summary><div class="detail-body"><p>The model accepts and returns array references, allowing callers to bypass guarded updates. Defensive copies or a narrower cell API would protect the invariant. Generation and solving should remain separate from move validation.</p></div></details><div class="source-pointers"><span class="eyebrow">Source entry points</span><p>src/sudoku/Sudoku.java · src/sudoku/mySudoku.java</p></div></section>
+    <section class="section split" id="status"><div><div class="eyebrow">Scope &amp; next steps</div><h2>What this demonstrates.</h2><p>Board/validation prototype. The recursive solver is incomplete, and scramble does not guarantee a solvable puzzle. The BasicIO interface was not freshly captured.</p></div><div class="prose"><h3>Explore the implementation</h3><a class="button primary" href="https://github.com/maikeeb/Sudoku" target="_blank" rel="noopener">Explore the source ↗</a><p class="small-note source-note">Screenshots and output are evidence of the stated demonstration, not a claim that every feature or failure mode was tested.</p></div></section>
+    <section class="closing"><div><div class="eyebrow">Let’s talk engineering</div><h2>Interested in the thinking behind it?</h2><p>I’m happy to discuss the implementation, its limitations, and how I would develop it further.</p></div><div class="closing-actions"><a class="button primary" href="mailto:ckerrigan789@gmail.com">Get in touch ↗</a><a class="text-link" href="index.html#projects">Back to all projects</a></div></section>
+    <nav class="project-pagination" aria-label="More projects"><a href="software-testing.html">← Previous project</a><a href="maze.html">Next project →</a></nav>
+  </main>
+  <footer class="wrap footer"><span>Charlotte Kerrigan · Software developer</span><span>Project case study · Sudoku Board Validator</span></footer>
+</body>
+</html>

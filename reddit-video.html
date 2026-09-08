@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Reddit Short-Form Video Automation — Project case study | Charlotte Kerrigan</title>
+  <meta name="description" content="A prototype pipeline for converting collected posts and comments into narrated vertical videos. Charlotte Kerrigan’s contribution, implementation, and evidence.">
+  <link rel="canonical" href="https://maikeeeb.github.io/reddit-video.html">
+  <meta property="og:title" content="Reddit Short-Form Video Automation — Charlotte Kerrigan">
+  <meta property="og:description" content="A prototype pipeline for converting collected posts and comments into narrated vertical videos.">
+  <meta property="og:type" content="article">
+  <link rel="stylesheet" href="washproof.css">
+  <link rel="stylesheet" href="project-case-studies.css">
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+  <header class="site-header"><nav class="wrap nav" aria-label="Main navigation">
+    <a class="brand" href="index.html">Charlotte <span>Kerrigan</span></a>
+    <a class="back" href="index.html#projects">← All projects</a>
+  </nav></header>
+  <main class="wrap" id="main">
+    <section class="hero" aria-labelledby="title">
+      <div class="eyebrow">Selected work / 09 · Media automation</div>
+      <div class="hero-grid"><div><div class="wordmark">Reddit Short-Form Video Automation</div><h1 id="title">Connecting text, narration, and a video timeline.</h1></div>
+      <div class="hero-story"><p class="lead">A prototype pipeline for converting collected posts and comments into narrated vertical videos.</p><div class="actions"><a class="button primary" href="#evidence">See the evidence ↓</a><a class="text-link" href="#engineering">Engineering details ↗</a></div></div></div>
+      <dl class="project-facts"><div><dt>My role</dt><dd>Personal prototype</dd></div><div><dt>Project year</dt><dd>2022</dd></div><div><dt>Evidence</dt><dd>Source walkthrough</dd></div><div><dt>Built with</dt><dd>Python · Selenium · gTTS · MoviePy</dd></div></dl>
+    </section>
+    
+    <nav class="contents" aria-label="Case study sections"><a href="#context">Problem &amp; contribution</a><a href="#workflow">Workflow</a><a href="#evidence">Evidence</a><a href="#engineering">Engineering</a><a href="#status">Scope &amp; next steps</a></nav>
+    <section class="section split" id="context"><div><div class="eyebrow">The starting point</div><h2>Why build it?</h2><p>Text, screenshots, speech duration, and background footage must stay synchronized. Automating their assembly is an exercise in coordinating external systems and media timing.</p></div><div class="prose"><div class="eyebrow">My contribution</div><h2>What I built.</h2><p>I connected Selenium collection, content screenshots, gTTS narration, and MoviePy composition. The project includes background-clip rotation, vertical export settings, and a separate prototype YouTube upload script.</p></div></section>
+    <section class="section" id="workflow"><div class="eyebrow">End to end</div><h2>How it works.</h2><ol class="workflow-list"><li><span class="step">1</span><div><h3>Collect material</h3><p>Capture selected text and images.</p></div></li><li><span class="step">2</span><div><h3>Use narration as the clock</h3><p>Generate audio and use its duration to time each visual.</p></div></li><li><span class="step">3</span><div><h3>Assemble the output</h3><p>Composite the sequence over background footage and render a vertical video.</p></div></li></ol></section>
+    <section class="section" id="evidence"><div class="eyebrow">Source walkthrough</div><h2>Look at the work.</h2><p class="evidence-intro">Reviewed the actual collection and composition source. No fresh video is presented: original inputs contain external content, and a full run depends on speech generation and legacy scraping behavior.</p></section>
+    <section class="section" id="engineering"><div class="eyebrow">For a closer technical review</div><h2>Decisions &amp; tradeoffs.</h2><p>Open each note for the implementation boundary, tradeoff, and next engineering question.</p><details><summary><span>01</span>Audio duration drives visual timing</summary><div class="detail-body"><p>Each image receives generated speech and uses that audio’s duration. Failed or delayed speech generation must be handled before the composition can safely proceed.</p></div></details><details><summary><span>02</span>Track media lifecycle explicitly</summary><div class="detail-body"><p>The prototype advances a background-media offset and rotates exhausted files. Reruns need isolated inputs and deliberate cleanup. Immutable source assets and output manifests would be safer than relying on mutable folders.</p></div></details><div class="source-pointers"><span class="eyebrow">Source entry points</span><p>DataGrabber.py · video.py · upload_video.py</p></div></section>
+    <section class="section split" id="status"><div><div class="eyebrow">Scope &amp; next steps</div><h2>What this demonstrates.</h2><p>Archived prototype with environment-specific export settings. Upload integration and recovery from failed external calls are not production-validated. A repeatable demo should begin with owned fixtures and controlled narration.</p></div><div class="prose"><h3>Explore the implementation</h3><p class="small-note">Source is local, private, or archived; no public repository link is available.</p><p class="small-note source-note">Screenshots and output are evidence of the stated demonstration, not a claim that every feature or failure mode was tested.</p></div></section>
+    <section class="closing"><div><div class="eyebrow">Let’s talk engineering</div><h2>Interested in the thinking behind it?</h2><p>I’m happy to discuss the implementation, its limitations, and how I would develop it further.</p></div><div class="closing-actions"><a class="button primary" href="mailto:ckerrigan789@gmail.com">Get in touch ↗</a><a class="text-link" href="index.html#projects">Back to all projects</a></div></section>
+    <nav class="project-pagination" aria-label="More projects"><a href="twitch-compilation.html">← Previous project</a><a href="moviepy-editor.html">Next project →</a></nav>
+  </main>
+  <footer class="wrap footer"><span>Charlotte Kerrigan · Software developer</span><span>Project case study · Reddit Short-Form Video Automation</span></footer>
+</body>
+</html>

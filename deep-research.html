@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Deep Research Agent System — Project case study | Charlotte Kerrigan</title>
+  <meta name="description" content="A local workflow for breaking research into investigations and preserving the connection between claims, sources, and a final report. Charlotte Kerrigan’s contribution, implementation, and evidence.">
+  <link rel="canonical" href="https://maikeeeb.github.io/deep-research.html">
+  <meta property="og:title" content="Deep Research Agent System — Charlotte Kerrigan">
+  <meta property="og:description" content="A local workflow for breaking research into investigations and preserving the connection between claims, sources, and a final report.">
+  <meta property="og:type" content="article">
+  <link rel="stylesheet" href="washproof.css">
+  <link rel="stylesheet" href="project-case-studies.css">
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+  <header class="site-header"><nav class="wrap nav" aria-label="Main navigation">
+    <a class="brand" href="index.html">Charlotte <span>Kerrigan</span></a>
+    <a class="back" href="index.html#projects">← All projects</a>
+  </nav></header>
+  <main class="wrap" id="main">
+    <section class="hero" aria-labelledby="title">
+      <div class="eyebrow">Selected work / 05 · AI tooling · Automation</div>
+      <div class="hero-grid"><div><div class="wordmark">Deep Research Agent System</div><h1 id="title">Research with a traceable chain of evidence.</h1></div>
+      <div class="hero-story"><p class="lead">A local workflow for breaking research into investigations and preserving the connection between claims, sources, and a final report.</p><div class="actions"><a class="button primary" href="#evidence">See the evidence ↓</a><a class="text-link" href="#engineering">Engineering details ↗</a></div></div></div>
+      <dl class="project-facts"><div><dt>My role</dt><dd>Custom skills &amp; Python tooling</dd></div><div><dt>Project year</dt><dd>2026</dd></div><div><dt>Evidence</dt><dd>Runtime evidence</dd></div><div><dt>Built with</dt><dd>Python · argparse · JSON · subprocess</dd></div></dl>
+    </section>
+    
+    <nav class="contents" aria-label="Case study sections"><a href="#context">Problem &amp; contribution</a><a href="#workflow">Workflow</a><a href="#evidence">Evidence</a><a href="#engineering">Engineering</a><a href="#status">Scope &amp; next steps</a></nav>
+    <section class="section split" id="context"><div><div class="eyebrow">The starting point</div><h2>Why build it?</h2><p>Parallel research becomes difficult to audit when agents repeat work or conclusions lose their evidence. The workflow needs persistent artifacts and checks between stages.</p></div><div class="prose"><div class="eyebrow">My contribution</div><h2>What I built.</h2><p>I developed custom agent instructions and standard-library Python helpers for initialization, status, handoff validation, duplicate-question gates, cross-artifact checks, and Markdown compilation.</p></div></section>
+    <section class="section" id="workflow"><div class="eyebrow">End to end</div><h2>How it works.</h2><ol class="workflow-list"><li><span class="step">1</span><div><h3>Plan and investigate</h3><p>Record a question tree and assign bounded investigations.</p></div></li><li><span class="step">2</span><div><h3>Validate handoffs</h3><p>Check claim identifiers, evidence fields, source mapping, and follow-up overlap.</p></div></li><li><span class="step">3</span><div><h3>Compile with traceability</h3><p>Run consistency checks before assembling the report.</p></div></li></ol></section>
+    <section class="section" id="evidence"><div class="eyebrow">Runtime evidence</div><h2>Look at the work.</h2><p class="evidence-intro">Ran the original init and status commands for a fictional workshop question. The output records an initialized run with no investigations or claims; no research completion is implied.</p><div class="output-panel"><div class="output-label">Recorded program output · local demonstration</div><pre tabindex="0" aria-label="Recorded output"><code>Run: portfolio-demo
+Phase: initialized
+research-plan.json: present
+question-tree.json: present
+duplicate-log.json: present
+source-mapping.json: missing
+final-trace-check.json: missing
+handoffs: 0
+Trace: not checked</code></pre></div></section>
+    <section class="section" id="engineering"><div class="eyebrow">For a closer technical review</div><h2>Decisions &amp; tradeoffs.</h2><p>Open each note for the implementation boundary, tradeoff, and next engineering question.</p><details><summary><span>01</span>Separate process control from judgment</summary><div class="detail-body"><p>Python owns folders, checkpoints, validation order, subprocess exit codes, and resumability. Agents own decomposition, evidence interpretation, and synthesis. Deterministic validation is not a fact-checking oracle.</p></div></details><details><summary><span>02</span>Artifacts are the source of truth</summary><div class="detail-body"><p>The workflow checks agreement among plans, question trees, handoffs, and source mappings instead of trusting one status flag. This supports inspection and resumption. Schema consistency alone cannot establish that a source supports a claim.</p></div></details><div class="source-pointers"><span class="eyebrow">Source entry points</span><p>run_deep_research.py · validate_handoff.py · final_trace_check.py · compile_report.py</p></div></section>
+    <section class="section split" id="status"><div><div class="eyebrow">Scope &amp; next steps</div><h2>What this demonstrates.</h2><p>Local orchestration tooling. Duplicate heuristics can miss paraphrases, and structurally valid evidence can still be wrong. Trace checks should be evaluated against deliberately unsupported claims.</p></div><div class="prose"><h3>Explore the implementation</h3><p class="small-note">Source is local, private, or archived; no public repository link is available.</p><p class="small-note source-note">Screenshots and output are evidence of the stated demonstration, not a claim that every feature or failure mode was tested.</p></div></section>
+    <section class="closing"><div><div class="eyebrow">Let’s talk engineering</div><h2>Interested in the thinking behind it?</h2><p>I’m happy to discuss the implementation, its limitations, and how I would develop it further.</p></div><div class="closing-actions"><a class="button primary" href="mailto:ckerrigan789@gmail.com">Get in touch ↗</a><a class="text-link" href="index.html#projects">Back to all projects</a></div></section>
+    <nav class="project-pagination" aria-label="More projects"><a href="tft-optimizer.html">← Previous project</a><a href="issue-orchestration.html">Next project →</a></nav>
+  </main>
+  <footer class="wrap footer"><span>Charlotte Kerrigan · Software developer</span><span>Project case study · Deep Research Agent System</span></footer>
+</body>
+</html>

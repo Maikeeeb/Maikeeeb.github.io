@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>TCP File Transfer Prototype — Project case study | Charlotte Kerrigan</title>
+  <meta name="description" content="A client/server exercise in streaming a binary file and reporting transfer progress. Charlotte Kerrigan’s contribution, implementation, and evidence.">
+  <link rel="canonical" href="https://maikeeeb.github.io/tcp-transfer.html">
+  <meta property="og:title" content="TCP File Transfer Prototype — Charlotte Kerrigan">
+  <meta property="og:description" content="A client/server exercise in streaming a binary file and reporting transfer progress.">
+  <meta property="og:type" content="article">
+  <link rel="stylesheet" href="washproof.css">
+  <link rel="stylesheet" href="project-case-studies.css">
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+  <header class="site-header"><nav class="wrap nav" aria-label="Main navigation">
+    <a class="brand" href="index.html">Charlotte <span>Kerrigan</span></a>
+    <a class="back" href="index.html#projects">← All projects</a>
+  </nav></header>
+  <main class="wrap" id="main">
+    <section class="hero" aria-labelledby="title">
+      <div class="eyebrow">Selected work / 17 · Networking · Backend</div>
+      <div class="hero-grid"><div><div class="wordmark">TCP File Transfer Prototype</div><h1 id="title">Following a file across a socket connection.</h1></div>
+      <div class="hero-story"><p class="lead">A client/server exercise in streaming a binary file and reporting transfer progress.</p><div class="actions"><a class="button primary" href="#evidence">See the evidence ↓</a><a class="text-link" href="#engineering">Engineering details ↗</a></div></div></div>
+      <dl class="project-facts"><div><dt>My role</dt><dd>Personal learning prototype</dd></div><div><dt>Project year</dt><dd>2022</dd></div><div><dt>Evidence</dt><dd>Runtime evidence</dd></div><div><dt>Built with</dt><dd>Python · Sockets · Threading · tqdm</dd></div></dl>
+    </section>
+    
+    <nav class="contents" aria-label="Case study sections"><a href="#context">Problem &amp; contribution</a><a href="#workflow">Workflow</a><a href="#evidence">Evidence</a><a href="#engineering">Engineering</a><a href="#status">Scope &amp; next steps</a></nav>
+    <section class="section split" id="context"><div><div class="eyebrow">The starting point</div><h2>Why build it?</h2><p>Moving a file needs agreement about metadata, byte transfer, and when the receiver should consider the stream complete.</p></div><div class="prose"><div class="eyebrow">My contribution</div><h2>What I built.</h2><p>I built a TCP sender and receiver with filename/size metadata, chunked binary transfer, and progress feedback. A separate chatroom experiment uses per-client threads and broadcast loops.</p></div></section>
+    <section class="section" id="workflow"><div class="eyebrow">End to end</div><h2>How it works.</h2><ol class="workflow-list"><li><span class="step">1</span><div><h3>Connect and describe</h3><p>Open a socket and send filename and expected size.</p></div></li><li><span class="step">2</span><div><h3>Stream bytes</h3><p>Read chunks from the input and write received bytes to a file.</p></div></li><li><span class="step">3</span><div><h3>Close and verify</h3><p>Finish the connection and compare the received artifact with its input.</p></div></li></ol></section>
+    <section class="section" id="evidence"><div class="eyebrow">Runtime evidence</div><h2>Look at the work.</h2><p class="evidence-intro">Ran the original sender and receiver on localhost in isolated folders using a generated 3,600-byte fixture. A harness compared SHA-256 digests after transfer.</p><div class="output-panel"><div class="output-label">Recorded program output · local demonstration</div><pre tabindex="0" aria-label="Recorded output"><code>Fixture bytes: 3600
+Received bytes: 3600
+SHA-256 matches: True</code></pre></div></section>
+    <section class="section" id="engineering"><div class="eyebrow">For a closer technical review</div><h2>Decisions &amp; tradeoffs.</h2><p>Open each note for the implementation boundary, tradeoff, and next engineering question.</p><details><summary><span>01</span>TCP has no message boundaries</summary><div class="detail-body"><p>The receiver assumes its first recv contains only the metadata header. TCP can split the header or combine it with body bytes, so a successful local run does not prove robust framing. A length-prefixed header and exact-byte reads would make the contract explicit.</p></div></details><details><summary><span>02</span>Completion needs stronger checks</summary><div class="detail-body"><p>The receiver writes until connection closure. It should verify expected size, limit uploads, handle truncation, and write to a temporary file before promotion. Authentication and encryption would be necessary for a remote service.</p></div></details><div class="source-pointers"><span class="eyebrow">Source entry points</span><p>client.py · server.py · Client/ClientChatroom.py · Server/ServerChatroom.py</p></div></section>
+    <section class="section split" id="status"><div><div class="eyebrow">Scope &amp; next steps</div><h2>What this demonstrates.</h2><p>Networking-fundamentals prototype with fixed hosts/ports and no encryption. The fixture does not cover fragmentation, concurrent clients, timeouts, or interrupted transfers.</p></div><div class="prose"><h3>Explore the implementation</h3><p class="small-note">Source is local, private, or archived; no public repository link is available.</p><p class="small-note source-note">Screenshots and output are evidence of the stated demonstration, not a claim that every feature or failure mode was tested.</p></div></section>
+    <section class="closing"><div><div class="eyebrow">Let’s talk engineering</div><h2>Interested in the thinking behind it?</h2><p>I’m happy to discuss the implementation, its limitations, and how I would develop it further.</p></div><div class="closing-actions"><a class="button primary" href="mailto:ckerrigan789@gmail.com">Get in touch ↗</a><a class="text-link" href="index.html#projects">Back to all projects</a></div></section>
+    <nav class="project-pagination" aria-label="More projects"><a href="maze.html">← Previous project</a><a href="console-input.html">Next project →</a></nav>
+  </main>
+  <footer class="wrap footer"><span>Charlotte Kerrigan · Software developer</span><span>Project case study · TCP File Transfer Prototype</span></footer>
+</body>
+</html>

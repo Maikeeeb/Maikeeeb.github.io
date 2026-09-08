@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Python Console Input Library — Project case study | Charlotte Kerrigan</title>
+  <meta name="description" content="A compact helper for console questions, answer conversion, and repeated prompting after validation failures. Charlotte Kerrigan’s contribution, implementation, and evidence.">
+  <link rel="canonical" href="https://maikeeeb.github.io/console-input.html">
+  <meta property="og:title" content="Python Console Input Library — Charlotte Kerrigan">
+  <meta property="og:description" content="A compact helper for console questions, answer conversion, and repeated prompting after validation failures.">
+  <meta property="og:type" content="article">
+  <link rel="stylesheet" href="washproof.css">
+  <link rel="stylesheet" href="project-case-studies.css">
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+  <header class="site-header"><nav class="wrap nav" aria-label="Main navigation">
+    <a class="brand" href="index.html">Charlotte <span>Kerrigan</span></a>
+    <a class="back" href="index.html#projects">← All projects</a>
+  </nav></header>
+  <main class="wrap" id="main">
+    <section class="hero" aria-labelledby="title">
+      <div class="eyebrow">Selected work / 18 · Library · API design</div>
+      <div class="hero-grid"><div><div class="wordmark">Python Console Input Library</div><h1 id="title">One reusable place for interactive validation.</h1></div>
+      <div class="hero-story"><p class="lead">A compact helper for console questions, answer conversion, and repeated prompting after validation failures.</p><div class="actions"><a class="button primary" href="#evidence">See the evidence ↓</a><a class="text-link" href="#engineering">Engineering details ↗</a></div></div></div>
+      <dl class="project-facts"><div><dt>My role</dt><dd>Personal project</dd></div><div><dt>Project year</dt><dd>2020</dd></div><div><dt>Evidence</dt><dd>Runtime evidence</dd></div><div><dt>Built with</dt><dd>Python · Type conversion · Validation</dd></div></dl>
+    </section>
+    
+    <nav class="contents" aria-label="Case study sections"><a href="#context">Problem &amp; contribution</a><a href="#workflow">Workflow</a><a href="#evidence">Evidence</a><a href="#engineering">Engineering</a><a href="#status">Scope &amp; next steps</a></nav>
+    <section class="section split" id="context"><div><div class="eyebrow">The starting point</div><h2>Why build it?</h2><p>Small CLI programs repeat the same input loop: ask, convert, explain an error, and try again. A shared helper reduces duplication.</p></div><div class="prose"><div class="eyebrow">My contribution</div><h2>What I built.</h2><p>I built ask(prompt, **restrictions) with explicit type conversion, allowed answers, exclusive minimum/maximum bounds, string case normalization, and length checks.</p></div></section>
+    <section class="section" id="workflow"><div class="eyebrow">End to end</div><h2>How it works.</h2><ol class="workflow-list"><li><span class="step">1</span><div><h3>Read and convert</h3><p>Prompt and apply the requested type.</p></div></li><li><span class="step">2</span><div><h3>Explain errors</h3><p>Check restrictions and print feedback.</p></div></li><li><span class="step">3</span><div><h3>Return a value</h3><p>Repeat until the answer satisfies the configured checks.</p></div></li></ol></section>
+    <section class="section" id="evidence"><div class="eyebrow">Runtime evidence</div><h2>Look at the work.</h2><p class="evidence-intro">Executed the original ask function with invalid text, both exclusive bounds, and a valid integer. The feedback below comes from that controlled input stream.</p><div class="output-panel"><div class="output-label">Recorded program output · local demonstration</div><pre tabindex="0" aria-label="Recorded output"><code>Choose 1 through 9: hello
+Not a &lt;class &#x27;int&#x27;&gt;
+Choose 1 through 9: 0
+Below minimum value: 1
+Choose 1 through 9: 10
+Above maximum value: 9
+Choose 1 through 9: 7
+Accepted integer: 7</code></pre></div></section>
+    <section class="section" id="engineering"><div class="eyebrow">For a closer technical review</div><h2>Decisions &amp; tradeoffs.</h2><p>Open each note for the implementation boundary, tradeoff, and next engineering question.</p><details><summary><span>01</span>Flexible keywords have a cost</summary><div class="detail-body"><p>kwargs is concise but makes unsupported combinations and misspelled keys easy to miss. Typed keyword-only parameters or a validated restriction object would make the contract more discoverable.</p></div></details><details><summary><span>02</span>Validate the validator’s configuration</summary><div class="detail-body"><p>The demonstrated path supplies type=int. Omitting type can leave the implementation retrying indefinitely, and mixed type/length restrictions can raise errors. Reject invalid configuration before prompting rather than treating it as bad user input.</p></div></details><div class="source-pointers"><span class="eyebrow">Source entry points</span><p>asking.py</p></div></section>
+    <section class="section split" id="status"><div><div class="eyebrow">Scope &amp; next steps</div><h2>What this demonstrates.</h2><p>Learning library, not a hardened package. EOF, cancellation, missing types, contradictory restrictions, and boundary semantics need explicit regression tests.</p></div><div class="prose"><h3>Explore the implementation</h3><a class="button primary" href="https://github.com/maikeeb/AskingPackage" target="_blank" rel="noopener">Explore the source ↗</a><p class="small-note source-note">Screenshots and output are evidence of the stated demonstration, not a claim that every feature or failure mode was tested.</p></div></section>
+    <section class="closing"><div><div class="eyebrow">Let’s talk engineering</div><h2>Interested in the thinking behind it?</h2><p>I’m happy to discuss the implementation, its limitations, and how I would develop it further.</p></div><div class="closing-actions"><a class="button primary" href="mailto:ckerrigan789@gmail.com">Get in touch ↗</a><a class="text-link" href="index.html#projects">Back to all projects</a></div></section>
+    <nav class="project-pagination" aria-label="More projects"><a href="tcp-transfer.html">← Previous project</a><a href="languages-systems.html">Next project →</a></nav>
+  </main>
+  <footer class="wrap footer"><span>Charlotte Kerrigan · Software developer</span><span>Project case study · Python Console Input Library</span></footer>
+</body>
+</html>

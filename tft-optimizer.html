@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>TFT Team Comp Optimizer — Project case study | Charlotte Kerrigan</title>
+  <meta name="description" content="A configurable composition-search tool for Teamfight Tactics, with an interface that explains the roster and traits it selects. Charlotte Kerrigan’s contribution, implementation, and evidence.">
+  <link rel="canonical" href="https://maikeeeb.github.io/tft-optimizer.html">
+  <meta property="og:title" content="TFT Team Comp Optimizer — Charlotte Kerrigan">
+  <meta property="og:description" content="A configurable composition-search tool for Teamfight Tactics, with an interface that explains the roster and traits it selects.">
+  <meta property="og:type" content="article">
+  <link rel="stylesheet" href="washproof.css">
+  <link rel="stylesheet" href="project-case-studies.css">
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+  <header class="site-header"><nav class="wrap nav" aria-label="Main navigation">
+    <a class="brand" href="index.html">Charlotte <span>Kerrigan</span></a>
+    <a class="back" href="index.html#projects">← All projects</a>
+  </nav></header>
+  <main class="wrap" id="main">
+    <section class="hero" aria-labelledby="title">
+      <div class="eyebrow">Selected work / 04 · Full-stack · Algorithms</div>
+      <div class="hero-grid"><div><div class="wordmark">TFT Team Comp Optimizer</div><h1 id="title">Turning team constraints into searchable choices.</h1></div>
+      <div class="hero-story"><p class="lead">A configurable composition-search tool for Teamfight Tactics, with an interface that explains the roster and traits it selects.</p><div class="actions"><a class="button primary" href="#evidence">See the evidence ↓</a><a class="text-link" href="#engineering">Engineering details ↗</a></div></div></div>
+      <dl class="project-facts"><div><dt>My role</dt><dd>Personal project</dd></div><div><dt>Project year</dt><dd>2026</dd></div><div><dt>Evidence</dt><dd>Runtime evidence</dd></div><div><dt>Built with</dt><dd>React · TypeScript · MUI · FastAPI · Python</dd></div></dl>
+    </section>
+    <figure class="product-figure">
+      <a href="images/tft-results.png" aria-label="Open full-size TFT Team Comp Optimizer screenshot"><img src="images/tft-results.png" width="1440" height="900" loading="lazy" alt="TFT Team Comp Optimizer — actual application screenshot showing the roster returned by the local solver."></a>
+      <figcaption>the roster returned by the local solver. Select the image to view full size.</figcaption>
+    </figure>
+    <nav class="contents" aria-label="Case study sections"><a href="#context">Problem &amp; contribution</a><a href="#workflow">Workflow</a><a href="#evidence">Evidence</a><a href="#engineering">Engineering</a><a href="#status">Scope &amp; next steps</a></nav>
+    <section class="section split" id="context"><div><div class="eyebrow">The starting point</div><h2>Why build it?</h2><p>A team has limited slots, while champions share overlapping traits and compete for items. Considering every combination manually quickly becomes impractical.</p></div><div class="prose"><div class="eyebrow">My contribution</div><h2>What I built.</h2><p>I connected a Python beam-search solver to FastAPI and a React configuration interface. The project handles required and banned champions, trait constraints, emblem limits, solver modes, and itemization. Results expose the roster, trait summary, requirements, and diagnostics.</p></div></section>
+    <section class="section" id="workflow"><div class="eyebrow">End to end</div><h2>How it works.</h2><ol class="workflow-list"><li><span class="step">1</span><div><h3>Set constraints</h3><p>Choose a solver mode and configure champion, trait, and emblem requirements.</p></div></li><li><span class="step">2</span><div><h3>Search a bounded frontier</h3><p>Expand candidate teams and retain a limited beam of promising states.</p></div></li><li><span class="step">3</span><div><h3>Review the result</h3><p>Inspect the roster and active traits, then copy a team-planner code.</p></div></li></ol></section>
+    <section class="section" id="evidence"><div class="eyebrow">Runtime evidence</div><h2>Look at the work.</h2><p class="evidence-intro">Ran the actual React frontend and FastAPI solver against bundled TFT16 data. The captured default run selected a nine-unit team with eight bronze traits. These are demo results, not current-patch recommendations.</p><figure class="video-figure demo-video"><video controls playsinline preload="none" poster="images/tft-results.png" width="1440" height="900" aria-label="Silent TFT solver demonstration" aria-describedby="video-caption"><source src="media/tft-solver.mp4" type="video/mp4"><a href="media/tft-solver.mp4">Download the solver demonstration.</a></video><figcaption id="video-caption">Real interaction: run the local solver, inspect its roster, and copy the team code. Ten seconds; silent. Bundled TFT16 data.</figcaption></figure><figure class="product-figure secondary-capture">
+      <a href="images/tft-configuration.png" aria-label="Open full-size TFT Team Comp Optimizer screenshot"><img src="images/tft-configuration.png" width="1440" height="900" loading="lazy" alt="TFT Team Comp Optimizer — actual application screenshot showing Additional view from the same running application."></a>
+      <figcaption>Additional view from the same running application. Select the image to view full size.</figcaption>
+    </figure></section>
+    <section class="section" id="engineering"><div class="eyebrow">For a closer technical review</div><h2>Decisions &amp; tradeoffs.</h2><p>Open each note for the implementation boundary, tradeoff, and next engineering question.</p><details><summary><span>01</span>Beam search trades completeness for cost</summary><div class="detail-body"><p>Exhaustive search grows rapidly with roster size. A bounded beam makes search practical, but pruning can discard a team that would become stronger later. Beam width and seed selection affect quality and runtime; the result is not proof of a global optimum.</p></div></details><details><summary><span>02</span>Make configuration and data versions explicit</summary><div class="detail-body"><p>Schema-driven forms expose the backend configuration contract, while the backend owns validation and solving. Bundled game data and optional exported statistics inform scoring. A score only makes sense against the dataset that produced it.</p></div></details><div class="source-pointers"><span class="eyebrow">Source entry points</span><p>ui_api/main.py · bfl/solver_api.py · frontend/src/components/ResultsSection.tsx</p></div></section>
+    <section class="section split" id="status"><div><div class="eyebrow">Scope &amp; next steps</div><h2>What this demonstrates.</h2><p>Game data and balance change. Imported statistics can become stale, and an objective score is not a match-outcome prediction. A useful next check is comparison with exhaustive solutions on small fixtures.</p></div><div class="prose"><h3>Explore the implementation</h3><a class="button primary" href="https://github.com/Maikeeeb/tftcalcs" target="_blank" rel="noopener">Explore the source ↗</a><p class="small-note source-note">Screenshots and output are evidence of the stated demonstration, not a claim that every feature or failure mode was tested.</p></div></section>
+    <section class="closing"><div><div class="eyebrow">Let’s talk engineering</div><h2>Interested in the thinking behind it?</h2><p>I’m happy to discuss the implementation, its limitations, and how I would develop it further.</p></div><div class="closing-actions"><a class="button primary" href="mailto:ckerrigan789@gmail.com">Get in touch ↗</a><a class="text-link" href="index.html#projects">Back to all projects</a></div></section>
+    <nav class="project-pagination" aria-label="More projects"><a href="twitchclipper.html">← Previous project</a><a href="deep-research.html">Next project →</a></nav>
+  </main>
+  <footer class="wrap footer"><span>Charlotte Kerrigan · Software developer</span><span>Project case study · TFT Team Comp Optimizer</span></footer>
+</body>
+</html>
