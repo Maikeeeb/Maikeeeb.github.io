@@ -1,60 +1,47 @@
-# Charlotte Kerrigan — Portfolio
+# Charlotte Kerrigan — portfolio
 
-A static portfolio with 19 dedicated project pages, no build step, and no runtime dependencies.
-Every project card's image, title, and case-study link opens its own page. The homepage's
-CSS and project filter live inside `index.html`.
+The source for <https://maikeeb.github.io/>. A single static page with no build step, no
+framework and no trackers. GitHub Pages serves the root of `main`.
 
-**To host:** keep all root HTML/CSS files, `images/`, and `media/` together. The existing
-GitHub Pages site serves the root of `main` at <https://maikeeeb.github.io/>.
+## What's on the page
 
-## Project visuals
-WashProof, Token Trail, TFT Comp Optimizer, and Rust Belt Relicworks show actual application
-captures. MoviePy includes an existing desktop capture and a freshly executed export.
-Seven videos cover real interactions or clearly labeled output from original media-processing
-code. Test-pattern inputs are disclosed; no third-party footage was used for export demos.
-WashProof uses an isolated Docker demo with fictional records and withheld client identities. See
-[`docs/washproof-case-study.md`](docs/washproof-case-study.md) for attribution and media privacy rules.
-CLI projects show recorded program output. Legacy projects and course notes explicitly identify
-source-only or unavailable evidence. The themed card icons are navigation artwork, not screenshots.
-Case-study images link to their original full-size files. Keep media captions, contribution credit,
-and prototype limitations when updating content. See [verification and evidence notes](docs/project-case-studies.md).
+- **WashProof**: an interactive browser replica of the client app's kiosk and records screens,
+  with fictional data and the real rules (version conflicts, forward-only invoice states,
+  24-hour record freeze, role checks, idempotent submits). Real recordings sit below it.
+- **Work**: project cards that open a detail panel. Every project has a shareable link,
+  e.g. `/#work/tft`. Some panels include a live demo.
+- **Play**: browser rebuilds of algorithms from my projects and coursework (pathfinding,
+  delta debugging, beam search, chat-spike detection).
+- **Stack, Path, Contact**: where each tool was used, experience, earlier work.
 
-## View it locally
-Double-click `index.html`. It opens in your browser.
+## Files
 
-For HTTP preview, run `python -m http.server 5180 --bind 127.0.0.1` from this folder and open
-`http://127.0.0.1:5180/washproof.html`. Run static publishing checks with
-`python -m unittest discover -s tests -v`.
+| Path | What it is |
+| --- | --- |
+| `index.html` | Page structure and the text that doesn't need JavaScript |
+| `assets/js/content.js` | **All project content.** Edit this to change cards, panels, stats and experience |
+| `assets/js/site.js` | Page behaviour: cards, detail panels, routing, filters, theme |
+| `assets/js/washproof-replica.js`, `assets/css/washproof-replica.css` | The WashProof replica, styled to match the real product |
+| `assets/js/widgets.js`, `assets/css/widgets.css` | The interactive demos |
+| `assets/css/site.css` | Page styles; colours are tokens on `:root` with a dark theme |
+| `images/`, `media/` | Real application screenshots and silent recordings |
+| `404.html` | Sends old case-study URLs (e.g. `/washproof.html`) to the right part of the page |
+| `docs/content-sources.md` | Where each fact on the page came from, and how to refresh it |
 
-## Put it online (pick one — all free)
+## Edit and preview
 
-### Option A — GitHub Pages (recommended, you already have GitHub)
-1. Create a new public repo, e.g. `portfolio` (or name it `Maikeeeb.github.io` to get a clean root URL).
-2. Upload the HTML/CSS files and the `images/` and `media/` folders (keep their relative paths).
-3. Repo **Settings → Pages → Source: `main` branch, `/root`** → Save.
-4. Live in ~1 minute at:
-   - `https://Maikeeeb.github.io/portfolio/`  (if repo is named `portfolio`), or
-   - `https://Maikeeeb.github.io/`  (if repo is named `Maikeeeb.github.io`).
+1. Change `assets/js/content.js` (or the HTML/CSS).
+2. Preview: `python -m http.server 5180 --bind 127.0.0.1`, then open <http://127.0.0.1:5180/>.
+3. Run the checks: `python -B -m unittest discover -s tests -v`.
+4. Commit and push to `main`; GitHub Pages updates in about a minute.
 
-### Option B — Netlify Drop (fastest, no account setup needed to start)
-1. Go to https://app.netlify.com/drop
-2. Drag the whole `portfolio` folder onto the page.
-3. You instantly get a shareable URL (rename the site in site settings for a tidy link).
+The tests check links and media, script syntax, video settings, required credit and honesty
+lines, and that confidential client details, personal IDs and credentials never get published.
+They don't prove the source applications work.
 
-### Option C — Cloudflare Pages / Vercel
-Same idea: connect the repo or drag the folder. All serve a single static file with zero config.
+## Content rules
 
-## The link to put on job applications
-Once hosted, paste the URL into the "Portfolio / Website" field on applications and into your
-resume header. A GitHub Pages URL (Option A) is the most recognizable to recruiters.
-
-## Updating it
-Edit `index.html` directly. To add a project, copy one `<article class="proj">…</article>`
-block inside `<div class="proj-grid" id="grid">` and change the text. The `data-tags`
-attribute controls which filter buttons show it (e.g. `data-tags="backend qa"`).
-
-## Notes
-- Contact info shown publicly: email, GitHub, and city (Stoney Creek, ON). Phone and street
-  address are intentionally left off the public page — keep those on the PDF resume you send directly.
-- Project descriptions follow the honest framing in `charlotte.md` (e.g. prototypes labeled as
-  prototypes, group/client contributions attributed). Keep that wording when you edit.
+- Say how each project was built: hand-written, AI-assisted (directed by me), or team work.
+- Credit teammates' parts; don't name people without their OK.
+- Keep the WashProof client anonymous. Captures use a separate demo instance with fictional data.
+- Quote counts with the date they were taken. Don't invent adoption, revenue or time-saved figures.

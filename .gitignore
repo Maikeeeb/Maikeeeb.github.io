@@ -3,3 +3,7 @@
 # Local preview, capture sources, and verification output
 .runtime/
 __pycache__/
+
+# Local tooling and design explorations (not published)
+.claude/
+design-options/
