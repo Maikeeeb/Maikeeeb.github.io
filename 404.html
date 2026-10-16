@@ -1,0 +1,34 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Page moved — Charlotte Kerrigan</title>
+<meta name="robots" content="noindex">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<style>
+:root{--bg:#f3f1eb;--ink:#0f1012;--ink-2:#4a4c52;--lime:#d5fb45;color-scheme:light}
+@media (prefers-color-scheme:dark){:root{--bg:#0e0f11;--ink:#f2f0ea;--ink-2:#b4b5ba}}
+body{margin:0;min-height:100vh;display:grid;place-items:center;background:var(--bg);color:var(--ink);font:400 18px/1.5 system-ui,sans-serif;padding:16px}
+main{max-width:520px}
+h1{font-size:44px;line-height:1;margin:0 0 14px;letter-spacing:-.03em}
+p{color:var(--ink-2)}
+a.btn{display:inline-block;margin-top:10px;background:var(--lime);color:#0f1012;padding:12px 20px;border-radius:999px;font-weight:600;text-decoration:none}
+</style>
+</head>
+<body>
+<main>
+  <h1>This page has moved.</h1>
+  <p>The portfolio is now a single page. Every project, including WashProof, lives on the home page.</p>
+  <a class="btn" href="/">Go to the portfolio →</a>
+</main>
+<script>
+// Old case-study URLs (e.g. /washproof.html) land on the matching part of the new page.
+(function () {
+  var map = { washproof: "#washproof", "token-trail": "#work/tokentrail", "tft-optimizer": "#work/tft", twitchclipper: "#work/twitchclipper", relicworks: "#work/relicworks", "moviepy-editor": "#work/moviepy", "deep-research": "#work/agents", "issue-orchestration": "#work/agents", astar: "#play", "software-testing": "#play" };
+  var name = location.pathname.replace(/^\/|\.html$/g, "");
+  if (map[name]) location.replace("/" + map[name]);
+})();
+</script>
+</body>
+</html>
