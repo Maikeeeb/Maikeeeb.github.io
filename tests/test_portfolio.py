@@ -131,7 +131,8 @@ class PortfolioTests(unittest.TestCase):
             with self.subTest(needle=needle):
                 self.assertIn(needle, home)
         for needle in ("AI-assisted, I directed", "Teammates built the similarity engine", "Base app by my collaborator",
-                       "One collaborator built early kiosk and portal flows", "correlational and exploratory", "I write the spec"):
+                       "One collaborator built early kiosk and portal flows", "correlational and exploratory", "I write the spec",
+                       "Card art masked", "test-fixture character, renamed"):
             with self.subTest(needle=needle):
                 self.assertIn(needle, CONTENT)
         site = (ROOT / "assets/js/site.js").read_text(encoding="utf-8")

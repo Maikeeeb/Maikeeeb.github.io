@@ -23,6 +23,15 @@ Screenshots and recordings in `images/` and `media/` are captures of the real so
 captures come from a separate Docker demo instance with fictional records; client identity,
 branding and staff are withheld. Check every frame for identifying details before adding media.
 
+Deck Insights and TLIBuilding were captured on 2026-10-17 from the local repositories with scripted
+browser and Xvfb sessions. Deck Insights: every card, battlefield and rune image request was
+answered with a plain placeholder (an outlined diamond), so no card art appears, and the player
+table and per-deck player lists were never shown. TLIBuilding: the build is the repository's
+committed test-fixture log with its player tag replaced by `Demo#0001`, plus bare craftable item
+bases saved as a `.tlibuild`. The app fills its sidebar level box only at startup, so the capture
+script set it to the loaded build's level (97). The recording cuts the roughly 15-second wait while
+"Replace all with calculated BIS" searches every slot.
+
 ## Demos
 
 The WashProof replica and the demos in `widgets.js` are browser re-implementations written for this

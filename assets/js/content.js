@@ -86,7 +86,7 @@ const PROJECTS = [
     summary: "Ingests 132 tournament decklists for one Riftbound legend, mines card packages with Apriori, scores them by win-rate lift with uncertainty, and recommends a 40-card list in an interactive dashboard.",
     points: ["Apriori from scratch: 90,595 packages at ≥20 co-occurrences", "Synergy = both − A − B + neither, with Welch SE shrunk toward the pooled variance", "Placement-to-win-rate model documented with its limits; 39 tests"],
     credit: "Solo, built with AI coding agents. Results are correlational and exploratory.",
-    visual: { widget: "apriori" }, repo: null, repoNote: "Private until card art and scraped pages are removed",
+    visual: { img: "deck-insights.jpg", video: "deck-insights-explorer.mp4", widget: "apriori", imgNote: "Unleashed format view (119 of the 132 decks). Card art masked; player list not shown" }, repo: null, repoNote: "Private until card art and scraped pages are removed",
   },
   {
     id: "relicworks", title: "Rust Belt Relicworks", tagline: "Typed, tested idle-game prototype", year: "2026", sort: 2026.4,
@@ -106,7 +106,7 @@ const PROJECTS = [
     summary: "A Torchlight: Infinite damage calculator started by a friend and frequent collaborator. I added a game-log importer, a damage-based best-in-slot crafting optimizer, versioned build files and calibration tests.",
     points: ["Best-in-slot search under crafting limits, with background-threaded previews", "~1k-line importer from game log to character state", "13 of the repo's 54 test files"],
     credit: "Base app by my collaborator. The features above are my July 2026 work, AI-assisted.",
-    visual: {}, repo: null, repoNote: "Private fork",
+    visual: { img: "tlibuilding-bis.png", video: "tlibuilding-bis.mp4", imgNote: "Demo build: the repo's test-fixture character, renamed, on bare item bases, so the DPS jump is empty bases to top-tier affixes in the app's model. The slow all-slot search is cut." }, repo: null, repoNote: "Private fork",
   },
   {
     id: "moviepy", title: "MoviePy Video Editor", tagline: "A 2020 project, refactored and tested in 2026", year: "2020 → 2026", sort: 2025,
