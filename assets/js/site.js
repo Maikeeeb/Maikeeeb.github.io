@@ -60,13 +60,11 @@
   $("#big").innerHTML = [["766", "commits · 693 mine"], ["248", "merged pull requests"], ["1,505", "backend tests"], ["96%", "line-coverage floor in CI"]].map(([n, l]) => `<div><b>${n}</b><span>${l}</span></div>`).join("");
   $("#credit").textContent = wp.credit + " Counted October 15, 2026.";
 
-  /* ---------- covers: drawn art for projects without a capture ---------- */
+  /* ---------- covers: card tints, plus drawn art for projects without a capture ---------- */
   const TINT = { twitchclipper: "#d5fb45", agents: "#e3d1ff", riftbound: "#ffe9a8", tlibuilding: "#ffd6c9" };
   const ART = {
     twitchclipper: `<svg viewBox="0 0 320 180" preserveAspectRatio="none" aria-hidden="true">${Array.from({ length: 46 }, (_, i) => { const hh = 14 + 30 * Math.abs(Math.sin(i * 1.3)) + (i % 11 === 3 ? 90 : 0) + (i % 15 === 9 ? 70 : 0); return `<rect x="${8 + i * 6.8}" y="${170 - hh}" width="4.4" height="${hh}" rx="2" fill="#0f1012" opacity="${hh > 80 ? 1 : .3}"/>`; }).join("")}</svg>`,
     agents: `<svg viewBox="0 0 320 180" aria-hidden="true">${[0, 1, 2].map(r => `<g transform="translate(24 ${26 + r * 48})">${[0, 1, 2, 3, 4].map(k => `<rect x="${k * 56}" y="0" width="46" height="26" rx="13" fill="${k <= 3 - r ? "#0f1012" : "none"}" stroke="#0f1012" stroke-width="2"/>`).join("")}</g>`).join("")}</svg>`,
-    riftbound: `<svg viewBox="0 0 320 180" aria-hidden="true">${[[60, 50], [130, 40], [200, 60], [260, 45], [90, 120], [170, 130], [240, 125]].map(([x, y], i, a) => a.slice(i + 1, i + 3).map(([x2, y2]) => `<line x1="${x}" y1="${y}" x2="${x2}" y2="${y2}" stroke="#0f1012" stroke-width="${i % 3 ? 1.5 : 4}" opacity=".7"/>`).join("") + `<circle cx="${x}" cy="${y}" r="${i % 3 ? 10 : 16}" fill="${i % 3 ? "#fff" : "#0f1012"}" stroke="#0f1012" stroke-width="2"/>`).join("")}</svg>`,
-    tlibuilding: `<svg viewBox="0 0 320 180" aria-hidden="true">${[0, 1, 2, 3, 4].map(i => `<rect x="30" y="${22 + i * 28}" width="${70 + ((i * 61) % 200)}" height="16" rx="8" fill="#0f1012" opacity="${i === 2 ? 1 : .3}"/>`).join("")}<path d="M222 72 l14 -10 l14 10" stroke="#0f1012" stroke-width="3" fill="none"/></svg>`,
   };
   const cover = p => p.visual.img ? `<img src="${img(p.visual.img)}" alt="" loading="lazy">` : ART[p.id] || "";
   const how = p => `<span class="how" data-b="${p.built}">${BUILT[p.built]}</span>`;
@@ -92,7 +90,7 @@
   function sheetHtml(p) {
     const i = order.indexOf(p.id);
     const media = p.visual.widget
-      ? `<div data-widget="${p.visual.widget}"></div>${p.visual.img ? `<p class="stamp"><a href="${img(p.visual.img)}" target="_blank" rel="noopener">Real app screenshot ↗</a>${p.visual.video ? ` · <a href="${vid(p.visual.video)}" target="_blank" rel="noopener">recording ↗</a>` : ""}</p>` : ""}`
+      ? `<div data-widget="${p.visual.widget}"></div>${p.visual.img ? `<p class="stamp"><a href="${img(p.visual.img)}" target="_blank" rel="noopener">Real app screenshot ↗</a>${p.visual.video ? ` · <a href="${vid(p.visual.video)}" target="_blank" rel="noopener">recording ↗</a>` : ""}${p.visual.imgNote ? ` · ${esc(p.visual.imgNote)}` : ""}</p>` : ""}`
       : p.visual.video ? `<div class="media"><video src="${vid(p.visual.video)}" poster="${img(p.visual.img)}" controls preload="metadata" playsinline aria-label="Recording of ${esc(p.title)}"></video></div>${p.visual.imgNote ? `<p class="stamp">${esc(p.visual.imgNote)}</p>` : ""}`
       : p.visual.img ? `<div class="media"><img src="${img(p.visual.img)}" alt="Screenshot of ${esc(p.title)}"></div>`
       : `<div class="media" style="border-radius:14px;overflow:hidden;position:relative;aspect-ratio:16/9;background:${TINT[p.id] || "var(--surface-2)"}">${ART[p.id] || ""}</div><p class="stamp">No public capture yet. Walkthrough on request.</p>`;
